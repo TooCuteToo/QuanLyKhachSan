@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +10,8 @@ using System.Windows.Forms;
 
 namespace DoAn_QuanLyKhachSan
 {
-    public partial class UIDangNhap : UserControl
+    public partial class WarningForm : Form
     {
-        public static event EventHandler UserControlDragging;
-
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -22,30 +20,31 @@ namespace DoAn_QuanLyKhachSan
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public UIDangNhap()
+        public WarningForm()
         {
             InitializeComponent();
-            
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.CenterToParent();
         }
 
-        private void UIDangNhap_MouseDown(object sender, MouseEventArgs e)
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (UserControlDragging != null)
+            if (e.Button == MouseButtons.Left)
             {
-                UserControlDragging(null, EventArgs.Empty);
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
 
-        private void loginBtn_Click(object sender, EventArgs e)
+        private void coBtn_Click(object sender, EventArgs e)
         {
-            this.Alert("XIN CHÀO A", AlertForm.enmType.Success);
-            this.Hide();
+            Application.Exit();
         }
 
-        public void Alert(string msg, AlertForm.enmType type)
+        private void koBtn_Click(object sender, EventArgs e)
         {
-            AlertForm frm = new AlertForm();
-            frm.showAlert(msg, type);
+            this.Close();
         }
     }
 }

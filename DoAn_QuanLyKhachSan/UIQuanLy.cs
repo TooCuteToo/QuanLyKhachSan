@@ -69,7 +69,7 @@ namespace DoAn_QuanLyKhachSan
 
         private void thoatBtn_Click(object sender, EventArgs e)
         {
-            Form2 msg = new Form2();
+            WarningForm msg = new WarningForm();
             msg.Show();
         }
         

@@ -2,14 +2,12 @@ E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachS
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
-E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Form1.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Properties.Resources.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIDangNhap.resources
-E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Form2.resources
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
@@ -23,3 +21,6 @@ D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_Q
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
 D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\Guna.UI2.dll
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.WarningForm.resources
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.AlertForm.resources
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Main.resources

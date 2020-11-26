@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DoAn_QuanLyKhachSan
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -20,7 +20,7 @@ namespace DoAn_QuanLyKhachSan
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
