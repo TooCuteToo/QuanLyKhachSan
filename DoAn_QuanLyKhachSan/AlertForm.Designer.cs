@@ -42,7 +42,7 @@
             this.thongBaoTxt.AutoSize = true;
             this.thongBaoTxt.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thongBaoTxt.ForeColor = System.Drawing.Color.White;
-            this.thongBaoTxt.Location = new System.Drawing.Point(79, 34);
+            this.thongBaoTxt.Location = new System.Drawing.Point(79, 27);
             this.thongBaoTxt.Name = "thongBaoTxt";
             this.thongBaoTxt.Size = new System.Drawing.Size(126, 22);
             this.thongBaoTxt.TabIndex = 0;
@@ -52,7 +52,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.ok;
-            this.pictureBox2.Location = new System.Drawing.Point(13, 24);
+            this.pictureBox2.Location = new System.Drawing.Point(13, 17);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(60, 40);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -62,7 +62,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.delete;
-            this.pictureBox1.Location = new System.Drawing.Point(297, 24);
+            this.pictureBox1.Location = new System.Drawing.Point(297, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(33, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.ClientSize = new System.Drawing.Size(357, 91);
+            this.ClientSize = new System.Drawing.Size(357, 75);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.thongBaoTxt);
