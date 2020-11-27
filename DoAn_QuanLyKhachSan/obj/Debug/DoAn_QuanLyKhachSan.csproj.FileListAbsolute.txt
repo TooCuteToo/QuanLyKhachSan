@@ -24,3 +24,7 @@ D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\Guna.U
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.WarningForm.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.AlertForm.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Main.resources
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Design.dll
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dll
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
