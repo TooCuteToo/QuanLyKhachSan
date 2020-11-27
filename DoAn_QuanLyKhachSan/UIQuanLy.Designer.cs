@@ -330,16 +330,6 @@
             this.uiNhanVien2.Name = "uiNhanVien2";
             this.uiNhanVien2.Size = new System.Drawing.Size(932, 399);
             this.uiNhanVien2.TabIndex = 1;
-            this.uiNhanVien2.UseSelectable = true;
-            // 
-            // uiNhanVien1
-            // 
-            this.uiNhanVien1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiNhanVien1.Location = new System.Drawing.Point(0, 0);
-            this.uiNhanVien1.Name = "uiNhanVien1";
-            this.uiNhanVien1.Size = new System.Drawing.Size(932, 399);
-            this.uiNhanVien1.TabIndex = 0;
-            this.uiNhanVien1.UseSelectable = true;
             // 
             // UIQuanLy
             // 

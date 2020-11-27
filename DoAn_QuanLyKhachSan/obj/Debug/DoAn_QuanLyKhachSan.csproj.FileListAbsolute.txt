@@ -28,3 +28,4 @@ E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.De
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dll
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIKhachHang.resources
