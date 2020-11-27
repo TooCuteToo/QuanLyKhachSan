@@ -1,7 +1,6 @@
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
-E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Properties.Resources.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
@@ -29,3 +28,4 @@ E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dl
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIKhachHang.resources
+E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache

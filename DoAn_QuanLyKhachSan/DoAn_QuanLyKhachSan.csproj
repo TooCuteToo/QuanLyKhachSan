@@ -63,10 +63,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlertForm.cs">
+    <Compile Include="DAO\KhachHangDAO.cs" />
+    <Compile Include="DAO\NhanVienDAO.cs" />
+    <Compile Include="POJO\KhachHangPOJO.cs" />
+    <Compile Include="POJO\NhanVienPOJO.cs" />
+    <Compile Include="UI\AlertForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AlertForm.Designer.cs">
+    <Compile Include="UI\AlertForm.Designer.cs">
       <DependentUpon>AlertForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataClasses1.designer.cs">
@@ -74,60 +78,60 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
+    <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.cs">
+    <Compile Include="UI\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIKhachHang.cs">
+    <Compile Include="UI\UIKhachHang.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIKhachHang.Designer.cs">
+    <Compile Include="UI\UIKhachHang.Designer.cs">
       <DependentUpon>UIKhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="UINhanVien.cs">
+    <Compile Include="UI\UINhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UINhanVien.Designer.cs">
+    <Compile Include="UI\UINhanVien.Designer.cs">
       <DependentUpon>UINhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarningForm.cs">
+    <Compile Include="UI\WarningForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarningForm.Designer.cs">
+    <Compile Include="UI\WarningForm.Designer.cs">
       <DependentUpon>WarningForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIDangNhap.cs">
+    <Compile Include="UI\UIDangNhap.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIDangNhap.Designer.cs">
+    <Compile Include="UI\UIDangNhap.Designer.cs">
       <DependentUpon>UIDangNhap.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIQuanLy.cs">
+    <Compile Include="UI\UIQuanLy.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIQuanLy.Designer.cs">
+    <Compile Include="UI\UIQuanLy.Designer.cs">
       <DependentUpon>UIQuanLy.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AlertForm.resx">
+    <EmbeddedResource Include="UI\AlertForm.resx">
       <DependentUpon>AlertForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIKhachHang.resx">
+    <EmbeddedResource Include="UI\UIKhachHang.resx">
       <DependentUpon>UIKhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UINhanVien.resx">
+    <EmbeddedResource Include="UI\UINhanVien.resx">
       <DependentUpon>UINhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WarningForm.resx">
+    <EmbeddedResource Include="UI\WarningForm.resx">
       <DependentUpon>WarningForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -140,10 +144,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UIDangNhap.resx">
+    <EmbeddedResource Include="UI\UIDangNhap.resx">
       <DependentUpon>UIDangNhap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIQuanLy.resx">
+    <EmbeddedResource Include="UI\UIQuanLy.resx">
       <DependentUpon>UIQuanLy.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataClasses1.dbml">

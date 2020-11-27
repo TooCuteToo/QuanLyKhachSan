@@ -39,6 +39,8 @@
             // 
             // listView1
             // 
+            this.listView1.AutoArrange = false;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CMND,
             this.columnHeader2,
@@ -58,11 +60,11 @@
             // 
             // CMND
             // 
-            this.CMND.Width = 112;
+            this.CMND.Width = 170;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Width = 176;
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
@@ -78,7 +80,7 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Width = 179;
+            this.columnHeader1.Width = 125;
             // 
             // UIKhachHang
             // 

@@ -33,16 +33,21 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView1
             // 
+            this.listView1.AutoArrange = false;
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader2,
+            this.columnHeader3});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -55,19 +60,33 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Width = 247;
+            this.columnHeader1.Text = "maNV";
+            this.columnHeader1.Width = 120;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Width = 229;
+            this.columnHeader6.Text = "tenNV";
+            this.columnHeader6.Width = 200;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Width = 215;
+            this.columnHeader7.Text = "gioiTinh";
+            this.columnHeader7.Width = 120;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Width = 223;
+            this.columnHeader8.Text = "ngaySinh";
+            this.columnHeader8.Width = 200;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "diaChi";
+            this.columnHeader2.Width = 120;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "sdt";
+            this.columnHeader3.Width = 150;
             // 
             // UINhanVien
             // 
@@ -87,5 +106,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
