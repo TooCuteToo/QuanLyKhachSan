@@ -11,7 +11,7 @@ using DoAn_QuanLyKhachSan;
 
 namespace DoAn_QuanLyKhachSan
 {
-    public partial class UINhanVien : MetroFramework.Controls.MetroUserControl
+    public partial class UINhanVien : UserControl
     {
         public UINhanVien()
         {
