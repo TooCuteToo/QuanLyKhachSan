@@ -43,8 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.uiNhanVien2 = new DoAn_QuanLyKhachSan.UINhanVien();
-            this.uiKhachHang1 = new DoAn_QuanLyKhachSan.UIKhachHang();
             this.label1 = new System.Windows.Forms.Label();
             this.thoatBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -52,6 +50,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
+            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -231,30 +231,14 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.uiNhanVien2);
-            this.panel3.Controls.Add(this.uiKhachHang1);
+            this.panel3.Controls.Add(this.uiKhachHang);
+            this.panel3.Controls.Add(this.uiNhanVien);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(200, 142);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(932, 399);
             this.panel3.TabIndex = 2;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
-            // 
-            // uiNhanVien2
-            // 
-            this.uiNhanVien2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiNhanVien2.Location = new System.Drawing.Point(0, 0);
-            this.uiNhanVien2.Name = "uiNhanVien2";
-            this.uiNhanVien2.Size = new System.Drawing.Size(932, 399);
-            this.uiNhanVien2.TabIndex = 1;
-            // 
-            // uiKhachHang1
-            // 
-            this.uiKhachHang1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiKhachHang1.Location = new System.Drawing.Point(0, 0);
-            this.uiKhachHang1.Name = "uiKhachHang1";
-            this.uiKhachHang1.Size = new System.Drawing.Size(932, 399);
-            this.uiKhachHang1.TabIndex = 3;
             // 
             // label1
             // 
@@ -339,6 +323,22 @@
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // uiNhanVien
+            // 
+            this.uiNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiNhanVien.Location = new System.Drawing.Point(0, 0);
+            this.uiNhanVien.Name = "uiNhanVien";
+            this.uiNhanVien.Size = new System.Drawing.Size(932, 399);
+            this.uiNhanVien.TabIndex = 0;
+            // 
+            // uiKhachHang
+            // 
+            this.uiKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiKhachHang.Location = new System.Drawing.Point(0, 0);
+            this.uiKhachHang.Name = "uiKhachHang";
+            this.uiKhachHang.Size = new System.Drawing.Size(932, 399);
+            this.uiKhachHang.TabIndex = 1;
+            // 
             // UIQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,7 +394,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label nameLB;
-        private UINhanVien uiNhanVien2;
-        private UIKhachHang uiKhachHang1;
+        private UIKhachHang uiKhachHang;
+        private UINhanVien uiNhanVien;
     }
 }

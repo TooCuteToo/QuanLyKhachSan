@@ -30,13 +30,13 @@ namespace DoAn_QuanLyKhachSan
         private void nhanVienBtn_Click(object sender, EventArgs e)
         {
             sideBar_Animation(sender, e);
-            uiNhanVien2.BringToFront();
+            uiNhanVien.BringToFront();
         }
 
         private void khachHangBtn_Click(object sender, EventArgs e)
         {
             sideBar_Animation(sender, e);
-            uiKhachHang1.BringToFront();
+            uiKhachHang.BringToFront();
         }
 
         private void datPhongBtn_Click(object sender, EventArgs e)
