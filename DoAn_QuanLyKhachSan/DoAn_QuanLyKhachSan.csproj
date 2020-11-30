@@ -63,10 +63,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\ChucVuDAO.cs" />
+    <Compile Include="DAO\DatPhongDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
+    <Compile Include="DAO\LoaiPhongDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
+    <Compile Include="DAO\PhieuDangKyDAO.cs" />
+    <Compile Include="DAO\PhieuDichVuDAO.cs" />
+    <Compile Include="DAO\PhongDAO.cs" />
+    <Compile Include="POJO\ChucVuPOJO.cs" />
+    <Compile Include="POJO\DatPhongPOJO.cs" />
     <Compile Include="POJO\KhachHangPOJO.cs" />
+    <Compile Include="POJO\LoaiPhongPOJO.cs" />
     <Compile Include="POJO\NhanVienPOJO.cs" />
+    <Compile Include="POJO\PhieuDangKyPOJO.cs" />
+    <Compile Include="POJO\PhieuDichVuPOJO.cs" />
+    <Compile Include="POJO\PhongPOJO.cs" />
     <Compile Include="UI\AlertForm.cs">
       <SubType>Form</SubType>
     </Compile>
