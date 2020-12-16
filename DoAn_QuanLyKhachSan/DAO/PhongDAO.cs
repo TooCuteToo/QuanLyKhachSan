@@ -1,34 +1,31 @@
-﻿using DoAn_QuanLyKhachSan.POJO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DoAn_QuanLyKhachSan.DAO
 {
-    class PhongDAO
+    class PhongDAO : QuanLyDAO<Phong>
     {
-        public static List<PhongPOJO> getDSPhong()
+        public override void removeData(Phong phong)
         {
-            List<PhongPOJO> listPhong = new List<PhongPOJO>();
-
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                foreach (Phong ph in db.Phongs)
-                {
-                    PhongPOJO phongPOJO = new PhongPOJO()
-                    {
-                        soPhong = ph.soPhong,
-                        maLoai = ph.maLoai,
-                        tinhTrang = ph.tinhTrang
-                    };
-
-                    listPhong.Add(phongPOJO);
-                }
+                Phong removedItem = db.Phongs.Where(elem => elem.soPhong == phong.soPhong).FirstOrDefault();
+                db.Phongs.DeleteOnSubmit(removedItem);
+                db.SubmitChanges();
             }
+        }
 
-            return listPhong;
+        public override void updateData(Phong phong)
+        {
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                Phong selectedItem = db.Phongs.Where(elem => elem.soPhong == phong.soPhong).FirstOrDefault();
+
+                selectedItem.tinhTrang = phong.tinhTrang;
+                selectedItem.LoaiPhong = phong.LoaiPhong;
+                selectedItem.maLoai = phong.maLoai;
+
+                db.SubmitChanges();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace DoAn_QuanLyKhachSan
+﻿namespace DoAn_QuanLyKhachSan.UI
 {
-    partial class UINhanVien
+    partial class UIPhong
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nhanVienLV = new System.Windows.Forms.ListView();
+            this.phongLV = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,55 +42,36 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // nhanVienLV
+            // phongLV
             // 
-            this.nhanVienLV.AutoArrange = false;
-            this.nhanVienLV.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nhanVienLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.phongLV.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.phongLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8,
             this.columnHeader2,
             this.columnHeader3});
-            this.nhanVienLV.FullRowSelect = true;
-            this.nhanVienLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.nhanVienLV.Location = new System.Drawing.Point(3, 58);
-            this.nhanVienLV.Name = "nhanVienLV";
-            this.nhanVienLV.Size = new System.Drawing.Size(932, 398);
-            this.nhanVienLV.TabIndex = 0;
-            this.nhanVienLV.UseCompatibleStateImageBehavior = false;
-            this.nhanVienLV.View = System.Windows.Forms.View.Details;
+            this.phongLV.FullRowSelect = true;
+            this.phongLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.phongLV.Location = new System.Drawing.Point(0, 58);
+            this.phongLV.Name = "phongLV";
+            this.phongLV.Size = new System.Drawing.Size(932, 341);
+            this.phongLV.TabIndex = 0;
+            this.phongLV.UseCompatibleStateImageBehavior = false;
+            this.phongLV.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "maNV";
-            this.columnHeader1.Width = 120;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "tenNV";
-            this.columnHeader6.Width = 200;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "gioiTinh";
-            this.columnHeader7.Width = 120;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "ngaySinh";
-            this.columnHeader8.Width = 200;
+            this.columnHeader1.Text = "SỐ PHÒNG";
+            this.columnHeader1.Width = 200;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "diaChi";
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Text = "TÌNH TRẠNG";
+            this.columnHeader2.Width = 200;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "sdt";
-            this.columnHeader3.Width = 150;
+            this.columnHeader3.Text = "MÃ LOẠI";
+            this.columnHeader3.Width = 200;
             // 
             // panel1
             // 
@@ -107,7 +85,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(932, 52);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 2;
             // 
             // searchBtn
             // 
@@ -172,14 +150,14 @@
             this.thuocTinhCB.Size = new System.Drawing.Size(121, 21);
             this.thuocTinhCB.TabIndex = 3;
             // 
-            // UINhanVien
+            // UIPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.nhanVienLV);
-            this.Name = "UINhanVien";
-            this.Size = new System.Drawing.Size(932, 456);
+            this.Controls.Add(this.phongLV);
+            this.Name = "UIPhong";
+            this.Size = new System.Drawing.Size(932, 399);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -188,19 +166,16 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView nhanVienLV;
+        private System.Windows.Forms.ListView phongLV;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox searchTxt;
-        private System.Windows.Forms.ComboBox thuocTinhCB;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button removeBtn;
         private System.Windows.Forms.Button addBtn;
+        private System.Windows.Forms.TextBox searchTxt;
+        private System.Windows.Forms.ComboBox thuocTinhCB;
         private System.Windows.Forms.Button searchBtn;
     }
 }

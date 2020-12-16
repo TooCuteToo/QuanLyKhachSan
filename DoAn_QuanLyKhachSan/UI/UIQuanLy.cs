@@ -41,12 +41,14 @@ namespace DoAn_QuanLyKhachSan
 
         private void datPhongBtn_Click(object sender, EventArgs e)
         {
+            uiDatPhong.BringToFront();
             sideBar_Animation(sender, e);
         }
 
         private void phongBtn_Click(object sender, EventArgs e)
         {
             sideBar_Animation(sender, e);
+            uiPhong.BringToFront();
         }
 
         private void sideBar_Animation(object sender, EventArgs e)
@@ -73,6 +75,19 @@ namespace DoAn_QuanLyKhachSan
         {
             WarningForm msg = new WarningForm();
             msg.Show();
+        }
+
+
+        private void social_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            string targetURL = "";
+
+            if (btn.Name == "fbBtn") targetURL = @"http://facebook.com";
+            else if (btn.Name == "twitterBtn") targetURL = @"http://twitter.com";
+            else if (btn.Name == "insBtn") targetURL = @"http://instagram.com";
+
+            System.Diagnostics.Process.Start(targetURL);
         }
         
     }

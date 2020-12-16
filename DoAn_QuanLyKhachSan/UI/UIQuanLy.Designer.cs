@@ -43,15 +43,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
-            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
             this.label1 = new System.Windows.Forms.Label();
             this.thoatBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.insBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.twitterBtn = new System.Windows.Forms.Button();
+            this.fbBtn = new System.Windows.Forms.Button();
+            this.uiDatPhong = new DoAn_QuanLyKhachSan.UI.UIDatPhong();
+            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
+            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
+            this.uiPhong = new DoAn_QuanLyKhachSan.UI.UIPhong();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -233,28 +235,14 @@
             // 
             this.panel3.Controls.Add(this.uiNhanVien);
             this.panel3.Controls.Add(this.uiKhachHang);
+            this.panel3.Controls.Add(this.uiPhong);
+            this.panel3.Controls.Add(this.uiDatPhong);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(200, 142);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(932, 399);
             this.panel3.TabIndex = 2;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
-            // 
-            // uiKhachHang
-            // 
-            this.uiKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiKhachHang.Location = new System.Drawing.Point(0, 0);
-            this.uiKhachHang.Name = "uiKhachHang";
-            this.uiKhachHang.Size = new System.Drawing.Size(932, 399);
-            this.uiKhachHang.TabIndex = 1;
-            // 
-            // uiNhanVien
-            // 
-            this.uiNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiNhanVien.Location = new System.Drawing.Point(0, 0);
-            this.uiNhanVien.Name = "uiNhanVien";
-            this.uiNhanVien.Size = new System.Drawing.Size(932, 399);
-            this.uiNhanVien.TabIndex = 0;
             // 
             // label1
             // 
@@ -291,17 +279,18 @@
             this.button5.TabIndex = 0;
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // insBtn
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.instagram;
-            this.button3.Location = new System.Drawing.Point(754, 24);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(28, 34);
-            this.button3.TabIndex = 0;
-            this.button3.UseVisualStyleBackColor = true;
+            this.insBtn.FlatAppearance.BorderSize = 0;
+            this.insBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.insBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.instagram;
+            this.insBtn.Location = new System.Drawing.Point(754, 24);
+            this.insBtn.Name = "insBtn";
+            this.insBtn.Size = new System.Drawing.Size(28, 34);
+            this.insBtn.TabIndex = 0;
+            this.insBtn.UseVisualStyleBackColor = true;
+            this.insBtn.Click += new System.EventHandler(this.social_Click);
             // 
             // button4
             // 
@@ -315,29 +304,63 @@
             this.button4.TabIndex = 0;
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // twitterBtn
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.twitter;
-            this.button2.Location = new System.Drawing.Point(720, 24);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(28, 34);
-            this.button2.TabIndex = 0;
-            this.button2.UseVisualStyleBackColor = true;
+            this.twitterBtn.FlatAppearance.BorderSize = 0;
+            this.twitterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.twitterBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.twitterBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.twitter;
+            this.twitterBtn.Location = new System.Drawing.Point(720, 24);
+            this.twitterBtn.Name = "twitterBtn";
+            this.twitterBtn.Size = new System.Drawing.Size(28, 34);
+            this.twitterBtn.TabIndex = 0;
+            this.twitterBtn.UseVisualStyleBackColor = true;
+            this.twitterBtn.Click += new System.EventHandler(this.social_Click);
             // 
-            // button1
+            // fbBtn
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.facebook;
-            this.button1.Location = new System.Drawing.Point(686, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 34);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.fbBtn.FlatAppearance.BorderSize = 0;
+            this.fbBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fbBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fbBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.facebook;
+            this.fbBtn.Location = new System.Drawing.Point(686, 24);
+            this.fbBtn.Name = "fbBtn";
+            this.fbBtn.Size = new System.Drawing.Size(28, 34);
+            this.fbBtn.TabIndex = 0;
+            this.fbBtn.UseVisualStyleBackColor = true;
+            this.fbBtn.Click += new System.EventHandler(this.social_Click);
+            // 
+            // uiDatPhong
+            // 
+            this.uiDatPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiDatPhong.Location = new System.Drawing.Point(0, 0);
+            this.uiDatPhong.Name = "uiDatPhong";
+            this.uiDatPhong.Size = new System.Drawing.Size(932, 399);
+            this.uiDatPhong.TabIndex = 3;
+            // 
+            // uiNhanVien
+            // 
+            this.uiNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiNhanVien.Location = new System.Drawing.Point(0, 0);
+            this.uiNhanVien.Name = "uiNhanVien";
+            this.uiNhanVien.Size = new System.Drawing.Size(932, 399);
+            this.uiNhanVien.TabIndex = 0;
+            // 
+            // uiKhachHang
+            // 
+            this.uiKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiKhachHang.Location = new System.Drawing.Point(0, 0);
+            this.uiKhachHang.Name = "uiKhachHang";
+            this.uiKhachHang.Size = new System.Drawing.Size(932, 399);
+            this.uiKhachHang.TabIndex = 1;
+            // 
+            // uiPhong
+            // 
+            this.uiPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPhong.Location = new System.Drawing.Point(0, 0);
+            this.uiPhong.Name = "uiPhong";
+            this.uiPhong.Size = new System.Drawing.Size(932, 399);
+            this.uiPhong.TabIndex = 2;
             // 
             // UIQuanLy
             // 
@@ -350,10 +373,10 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.thoatBtn);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.insBtn);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.twitterBtn);
+            this.Controls.Add(this.fbBtn);
             this.Controls.Add(this.panel1);
             this.Name = "UIQuanLy";
             this.Size = new System.Drawing.Size(1132, 541);
@@ -383,9 +406,9 @@
         private System.Windows.Forms.Panel sideBar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button fbBtn;
+        private System.Windows.Forms.Button twitterBtn;
+        private System.Windows.Forms.Button insBtn;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button thoatBtn;
@@ -396,5 +419,7 @@
         private System.Windows.Forms.Label nameLB;
         private UIKhachHang uiKhachHang;
         private UINhanVien uiNhanVien;
+        private UI.UIPhong uiPhong;
+        private UI.UIDatPhong uiDatPhong;
     }
 }

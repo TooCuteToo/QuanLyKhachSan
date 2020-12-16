@@ -7,31 +7,36 @@ using System.Threading.Tasks;
 
 namespace DoAn_QuanLyKhachSan.DAO
 {
-    class NhanVienDAO
+    class NhanVienDAO : QuanLyDAO<NhanVien>
     {
-        public static List<NhanVienPOJO> getDSNhanVien()
+        public override void removeData(NhanVien nv)
         {
-            List<NhanVienPOJO> listNhanVien = new List<NhanVienPOJO>();
-
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                foreach (NhanVien nv in db.NhanViens)
-                {
-                    NhanVienPOJO nvPOJO = new NhanVienPOJO()
-                    {
-                        maNV = nv.maNV,
-                        tenNV = nv.tenNV,
-                        gioiTinh = nv.gioiTinh,
-                        ngaySinh = nv.ngSinh.Value.ToString("dd/MM/yyyy"),
-                        diaChi = nv.diaChi,
-                        sdt = nv.SDT
-                    };
-
-                    listNhanVien.Add(nvPOJO);
-                }
+                NhanVien removedItem = db.NhanViens.Where(elem => elem.maNV == nv.maNV).FirstOrDefault();
+                db.NhanViens.DeleteOnSubmit(removedItem);
+                db.SubmitChanges();
             }
+        }
 
-            return listNhanVien;
+
+        public override void updateData(NhanVien nv)
+        {
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                NhanVien selectedItem = db.NhanViens.Where(elem => elem.maNV == nv.maNV).FirstOrDefault();
+
+                selectedItem.tenNV = nv.tenNV;
+                selectedItem.SDT = nv.SDT;
+
+                selectedItem.diaChi = nv.diaChi;
+                selectedItem.gioiTinh = nv.gioiTinh;
+
+                selectedItem.ngSinh = nv.ngSinh;
+                selectedItem.ngVaoLam = nv.ngVaoLam;
+
+                db.SubmitChanges();
+            }
         }
     }
 }

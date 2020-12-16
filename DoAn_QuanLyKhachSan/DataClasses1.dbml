@@ -7,39 +7,38 @@
       <Association Name="ChucVu_NhanVien" Member="NhanViens" ThisKey="maCV" OtherKey="maCV" Type="NhanVien" />
     </Type>
   </Table>
-  <Table Name="dbo.PhieuDichVu" Member="PhieuDichVus">
-    <Type Name="PhieuDichVu">
-      <Column Name="maDV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tenDV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="giaDV" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Association Name="PhieuDichVu_PhieuDangKy" Member="PhieuDangKies" ThisKey="maDV" OtherKey="maDV" Type="PhieuDangKy" />
+  <Table Name="dbo.Phong" Member="Phongs">
+    <Type Name="Phong">
+      <Column Name="soPhong" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tinhTrang" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="maLoai" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Phong_HoaDon" Member="HoaDons" ThisKey="soPhong" OtherKey="soPhong" Type="HoaDon" />
+      <Association Name="LoaiPhong_Phong" Member="LoaiPhong" ThisKey="maLoai" OtherKey="maLoai" Type="LoaiPhong" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.HoaDon" Member="HoaDons">
     <Type Name="HoaDon">
       <Column Name="maHD" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CMND" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
       <Column Name="maNV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="soPhong" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="soPhong" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="ngayDat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="ngayTra" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="tienThanhToan" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="Phong_HoaDon" Member="Phong" ThisKey="soPhong" OtherKey="soPhong" Type="Phong" IsForeignKey="true" />
       <Association Name="KhachHang_HoaDon" Member="KhachHang" ThisKey="CMND" OtherKey="CMND" Type="KhachHang" IsForeignKey="true" />
       <Association Name="NhanVien_HoaDon" Member="NhanVien" ThisKey="maNV" OtherKey="maNV" Type="NhanVien" IsForeignKey="true" />
-      <Association Name="Phong_HoaDon" Member="Phong" ThisKey="soPhong" OtherKey="soPhong" Type="Phong" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KhachHang" Member="KhachHangs">
     <Type Name="KhachHang">
       <Column Name="CMND" Type="System.String" DbType="VarChar(13) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tenKH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="tenKH" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="diaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="SDT" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="quocTich" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="loai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="KhachHang_HoaDon" Member="HoaDons" ThisKey="CMND" OtherKey="CMND" Type="HoaDon" />
-      <Association Name="KhachHang_PhieuDangKy" Member="PhieuDangKies" ThisKey="CMND" OtherKey="CMND" Type="PhieuDangKy" />
     </Type>
   </Table>
   <Table Name="dbo.LoaiPhong" Member="LoaiPhongs">
@@ -53,8 +52,8 @@
   <Table Name="dbo.NhanVien" Member="NhanViens">
     <Type Name="NhanVien">
       <Column Name="maNV" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tenNV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="maCV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="tenNV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="maCV" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="ngSinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="ngVaoLam" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -64,28 +63,6 @@
       <Column Name="pass" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="NhanVien_HoaDon" Member="HoaDons" ThisKey="maNV" OtherKey="maNV" Type="HoaDon" />
       <Association Name="ChucVu_NhanVien" Member="ChucVu" ThisKey="maCV" OtherKey="maCV" Type="ChucVu" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PhieuDangKy" Member="PhieuDangKies">
-    <Type Name="PhieuDangKy">
-      <Column Name="maDK" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="maDV" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="CMND" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
-      <Column Name="soPhong" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="soTienDatCoc" Type="System.Decimal" DbType="Money" CanBeNull="true" />
-      <Association Name="PhieuDichVu_PhieuDangKy" Member="PhieuDichVu" ThisKey="maDV" OtherKey="maDV" Type="PhieuDichVu" IsForeignKey="true" />
-      <Association Name="KhachHang_PhieuDangKy" Member="KhachHang" ThisKey="CMND" OtherKey="CMND" Type="KhachHang" IsForeignKey="true" />
-      <Association Name="Phong_PhieuDangKy" Member="Phong" ThisKey="soPhong" OtherKey="soPhong" Type="Phong" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Phong" Member="Phongs">
-    <Type Name="Phong">
-      <Column Name="soPhong" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tinhTrang" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="maLoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Association Name="Phong_HoaDon" Member="HoaDons" ThisKey="soPhong" OtherKey="soPhong" Type="HoaDon" />
-      <Association Name="Phong_PhieuDangKy" Member="PhieuDangKies" ThisKey="soPhong" OtherKey="soPhong" Type="PhieuDangKy" />
-      <Association Name="LoaiPhong_Phong" Member="LoaiPhong" ThisKey="maLoai" OtherKey="maLoai" Type="LoaiPhong" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

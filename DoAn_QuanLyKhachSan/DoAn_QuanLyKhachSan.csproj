@@ -68,9 +68,13 @@
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\LoaiPhongDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
-    <Compile Include="DAO\PhieuDangKyDAO.cs" />
-    <Compile Include="DAO\PhieuDichVuDAO.cs" />
     <Compile Include="DAO\PhongDAO.cs" />
+    <Compile Include="DAO\QuanLyDAO.cs" />
+    <Compile Include="DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </Compile>
     <Compile Include="POJO\ChucVuPOJO.cs" />
     <Compile Include="POJO\DatPhongPOJO.cs" />
     <Compile Include="POJO\KhachHangPOJO.cs" />
@@ -85,16 +89,23 @@
     <Compile Include="UI\AlertForm.Designer.cs">
       <DependentUpon>AlertForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataClasses1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    <Compile Include="UI\EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIDatPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UIDatPhong.Designer.cs">
+      <DependentUpon>UIDatPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UIKhachHang.cs">
       <SubType>UserControl</SubType>
@@ -107,6 +118,12 @@
     </Compile>
     <Compile Include="UI\UINhanVien.Designer.cs">
       <DependentUpon>UINhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UIPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UIPhong.Designer.cs">
+      <DependentUpon>UIPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\WarningForm.cs">
       <SubType>Form</SubType>
@@ -128,20 +145,29 @@
     <Compile Include="UI\UIQuanLy.Designer.cs">
       <DependentUpon>UIQuanLy.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\AlertForm.resx">
-      <DependentUpon>AlertForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="DataClasses1.dbml.layout">
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="UI\AlertForm.resx">
+      <DependentUpon>AlertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIDatPhong.resx">
+      <DependentUpon>UIDatPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIKhachHang.resx">
       <DependentUpon>UIKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UINhanVien.resx">
       <DependentUpon>UINhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UIPhong.resx">
+      <DependentUpon>UIPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\WarningForm.resx">
       <DependentUpon>WarningForm.cs</DependentUpon>
@@ -217,6 +243,14 @@
     <None Include="Resources\no.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\ok.png" />
+    <None Include="Resources\add_16px.png" />
+    <None Include="Resources\add_16px1.png" />
+    <None Include="Resources\add_16px2.png" />
+    <None Include="Resources\add_black_16px.png" />
+    <None Include="Resources\add_32px.png" />
+    <None Include="Resources\remove_32px.png" />
+    <None Include="Resources\edit_32px.png" />
+    <None Include="Resources\remove_new_32px.png" />
     <Content Include="Resources\user_login_icon.png" />
   </ItemGroup>
   <ItemGroup>

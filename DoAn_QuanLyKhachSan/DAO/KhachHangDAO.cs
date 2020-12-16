@@ -7,32 +7,35 @@ using System.Threading.Tasks;
 
 namespace DoAn_QuanLyKhachSan.DAO
 {
-    class KhachHangDAO
+    class KhachHangDAO : QuanLyDAO<KhachHang>
     {
-        public static List<KhachHangPOJO> getDSKhachHang()
+        public override void removeData(KhachHang kh)
         {
-            List<KhachHangPOJO> listKhachHang = new List<KhachHangPOJO>();
-
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                foreach (KhachHang kh in db.KhachHangs)
-                {
-                    KhachHangPOJO khPOJO = new KhachHangPOJO()
-                    {
-                        CMND = kh.CMND,
-                        tenKH = kh.tenKH,
-                        diaChi = kh.diaChi,
-                        gioiTinh = kh.gioiTinh,
-                        sdt = kh.SDT,
-                        quocTich = kh.quocTich,
-                        loai = kh.loai
-                    };
-
-                    listKhachHang.Add(khPOJO);
-                }
+                KhachHang removedItem = db.KhachHangs.Where(elem => elem.CMND == kh.CMND).FirstOrDefault();
+                db.KhachHangs.DeleteOnSubmit(removedItem);
+                db.SubmitChanges();
             }
+        }
 
-            return listKhachHang;
+
+        public override void updateData(KhachHang kh)
+        {
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                KhachHang selectedItem = db.KhachHangs.Where(elem => elem.CMND == kh.CMND).FirstOrDefault();
+                
+                selectedItem.tenKH = kh.tenKH;
+                selectedItem.gioiTinh = kh.gioiTinh;
+                
+                selectedItem.diaChi = kh.diaChi;
+                selectedItem.loai = kh.loai;
+                
+                selectedItem.SDT = kh.SDT;
+
+                db.SubmitChanges();
+            }
         }
     }
 }
