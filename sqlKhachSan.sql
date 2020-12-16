@@ -1,5 +1,4 @@
 ﻿use master
-go
 create database QuanLyKhachSan
 go
 
@@ -16,11 +15,10 @@ go
 create table KhachHang
 (
 CMND varchar(13) primary key,
-tenKH nvarchar(100),
+tenKH nvarchar(100) not null,
 diaChi nvarchar(100),
 gioiTinh nvarchar(100),
 SDT nvarchar(10),
-quocTich nvarchar(20),
 loai nvarchar(50)
 )
 go
@@ -28,8 +26,8 @@ go
 create table NhanVien
 (
 maNV varchar(10) primary key,
-tenNV nvarchar(100),
-maCV varchar(10),
+tenNV nvarchar(100) not null,
+maCV varchar(10) not null,
 gioiTinh nvarchar(20),
 ngSinh date,
 ngVaoLam date,
@@ -52,8 +50,8 @@ go
 create table Phong
 (
 soPhong varchar(10) primary key,
-tinhTrang nvarchar(50),
-maLoai varchar(10),
+tinhTrang nvarchar(50) not null,
+maLoai varchar(10) not null,
 constraint phong_maLP foreign key (maLoai) references LoaiPhong(maLoai)
 )
 go
@@ -61,9 +59,9 @@ go
 create table HoaDon
 (
 maHD varchar(10) primary key,
-CMND varchar(13),
+CMND varchar(13) not null,
 maNV varchar(10),
-soPhong varchar(10),
+soPhong varchar(10) not null,
 ngayDat date,
 ngayTra date,
 tienThanhToan money,
@@ -72,28 +70,6 @@ constraint Hoadon_maPhong foreign key (soPhong) references Phong(soPhong),
 constraint Hoadon_CMND foreign key (CMND) references KhachHang(CMND)
 )
 go
-
-create table PhieuDichVu
-(
-maDV varchar(10) primary key,
-tenDV nvarchar(100),
-giaDV money,
-)
-Go
-
-
-create table PhieuDangKy
-(
-maDK varchar(10) primary key,
-maDV varchar(10),
-CMND varchar(13),
-soPhong varchar(10),
-soTienDatCoc money,
-constraint Phieudangky_maPhong foreign key (soPhong) references Phong(soPhong),
-constraint Phieudangky_maDV foreign key (maDV) references Phieudichvu(maDV),
-constraint Phieudangky_maKH foreign key (CMND) references KhachHang(CMND)
-)
-Go
 
 insert into ChucVu values
 ('CV01',N'Quản Lý'),
@@ -105,31 +81,31 @@ Go
 
 
 insert into KhachHang values
-('031100004776',N'Vũ Thị Hải My',N'Hải Phòng',N'Nữ',N'0327567169',N'Việt Nam','VIP'),
-('031300001766',N'Đoàn Hùng Mạnh',N'Hải Phòng',N'Nam',N'0523897581',N'Việt Nam','VIP'),
-('001071000030',N'Trần Xuân Trường',N'Hà Nội',N'Nam',N'0865892941',N'Việt Nam','VIP'),
-('001301250721',N'Võ Hạ Anh',N'Hà Nội',N'Nữ',N'0987123757',N'Việt Nam','VIP'),
-('038108675763',N'Phạm Thị Thanh Lam',N'Thanh Hoá',N'Nữ',N'0962739160',N'Việt Nam','VIP'),
-('030861008133',N'Vũ Thu Bích',N'Hải Dương',N'Nữ',N'0377798312',N'Việt Nam','VIP'),
-('079090000555',N'Trần Minh Hùng',N'Hồ Chí Minh',N'Nam',N'0972532747',N'Việt Nam','VIP'),
-('079976578122',N'Nguyễn Thế Anh',N'Hồ Chí Minh',N'Nam',N'0328890344',N'Việt Nam','VIP'),
-('001987778913',N'Lương Quốc Anh',N'Hà Nội',N'Nam',N'0987114348',N'Việt Nam','VIP'),
-('031300012468',N'Vũ Thu Hạnh',N'Hải Phòng',N'Nữ',N'0972403477',N'Việt Nam','VIP'),
-('001100118903',N'Đoàn Châu Giang',N'Hà Nội',N'Nữ',N'0987139767',N'Việt Nam','VIP'),
-('001009991234',N'Đoàn Mai Hương',N'Hà Nội',N'Nữ',N'0346218888',N'Việt Nam','VIP'),
-('001019762789',N'Trần Hoàng Long',N'Hà Nội',N'Nam',N'0585288266',N'Việt Nam','VIP'),
-('035978981117',N'Tạ Thị Hằng',N'Hà Nam',N'Nữ',N'0585909765',N'Việt Nam','VIP'),
-('001000118903',N'Phạm Hồng Lam',N'Hà Nội',N'Nữ',N'0987139767',N'Việt Nam','VIP'),
-('027800006789',N'Nguyễn Hương Giang',N'Bắc Ninh',N'Nữ',N'0987118867',N'Việt Nam','VIP'),
-('054700027890',N'Phạm Nguyệt Minh',N'Phú Yên',N'Nữ',N'0972906651',N'Việt Nam','VIP'),
-('079189760086',N'Hoàng Đàm Hoài Lâm',N'Hồ Chí Minh',N'Nam',N'0523678457',N'Việt Nam','VIP'),
-('048987660986',N'Đặng Khắc Bình',N'Đà Nẵng',N'Nam',N'0346879670',N'Việt Nam','VIP'),
-('072098980989',N'Vũ Thúy Nga',N'Tây Ninh',N'Nữ',N'0972980671',N'Việt Nam','VIP'),
-('079098700789',N'Lưu Văn Hiếu',N'Hồ Chí Minh',N'Nam',N'0865087899',N'Việt Nam','VIP'),
-('079300001898',N'Lưu Việt Anh',N'Hồ Chí Minh',N'Nam',N'0987906541',N'Việt Nam','VIP'),
-('079389097812',N'Triệu Linh Hương',N'Hồ Chí Minh',N'Nữ',N'0328906781',N'Việt Nam','VIP'),
-('026200789871',N'Phạm Tuấn Trang',N'Vĩnh Phúc',N'Nam',N'0377907568',N'Việt Nam','VIP'),
-('056078907811',N'Đàm Thị Hạ',N'Khánh Hoà',N'Nữ',N'0332907335',N'Việt Nam','VIP')
+('031100004776',N'Vũ Thị Hải My',N'Hải Phòng',N'Nữ',N'0327567169','VIP'),
+('031300001766',N'Đoàn Hùng Mạnh',N'Hải Phòng',N'Nam',N'0523897581','VIP'),
+('001071000030',N'Trần Xuân Trường',N'Hà Nội',N'Nam',N'0865892941','VIP'),
+('001301250721',N'Võ Hạ Anh',N'Hà Nội',N'Nữ',N'0987123757','VIP'),
+('038108675763',N'Phạm Thị Thanh Lam',N'Thanh Hoá',N'Nữ',N'0962739160','VIP'),
+('030861008133',N'Vũ Thu Bích',N'Hải Dương',N'Nữ',N'0377798312','VIP'),
+('079090000555',N'Trần Minh Hùng',N'Hồ Chí Minh',N'Nam',N'0972532747','VIP'),
+('079976578122',N'Nguyễn Thế Anh',N'Hồ Chí Minh',N'Nam',N'0328890344','VIP'),
+('001987778913',N'Lương Quốc Anh',N'Hà Nội',N'Nam',N'0987114348','VIP'),
+('031300012468',N'Vũ Thu Hạnh',N'Hải Phòng',N'Nữ',N'0972403477','VIP'),
+('001100118903',N'Đoàn Châu Giang',N'Hà Nội',N'Nữ',N'0987139767','VIP'),
+('001009991234',N'Đoàn Mai Hương',N'Hà Nội',N'Nữ',N'0346218888','VIP'),
+('001019762789',N'Trần Hoàng Long',N'Hà Nội',N'Nam',N'0585288266','VIP'),
+('035978981117',N'Tạ Thị Hằng',N'Hà Nam',N'Nữ',N'0585909765','VIP'),
+('001000118903',N'Phạm Hồng Lam',N'Hà Nội',N'Nữ',N'0987139767','VIP'),
+('027800006789',N'Nguyễn Hương Giang',N'Bắc Ninh',N'Nữ',N'0987118867','VIP'),
+('054700027890',N'Phạm Nguyệt Minh',N'Phú Yên',N'Nữ',N'0972906651','VIP'),
+('079189760086',N'Hoàng Đàm Hoài Lâm',N'Hồ Chí Minh',N'Nam',N'0523678457','VIP'),
+('048987660986',N'Đặng Khắc Bình',N'Đà Nẵng',N'Nam',N'0346879670','VIP'),
+('072098980989',N'Vũ Thúy Nga',N'Tây Ninh',N'Nữ',N'0972980671','VIP'),
+('079098700789',N'Lưu Văn Hiếu',N'Hồ Chí Minh',N'Nam',N'0865087899','VIP'),
+('079300001898',N'Lưu Việt Anh',N'Hồ Chí Minh',N'Nam',N'0987906541','VIP'),
+('079389097812',N'Triệu Linh Hương',N'Hồ Chí Minh',N'Nữ',N'0328906781','VIP'),
+('026200789871',N'Phạm Tuấn Trang',N'Vĩnh Phúc',N'Nam',N'0377907568','VIP'),
+('056078907811',N'Đàm Thị Hạ',N'Khánh Hoà',N'Nữ',N'0332907335','VIP')
 
 
 set dateformat DMY
@@ -151,54 +127,47 @@ gO
 
 insert into LoaiPhong  values
 ('LP01',N'PHÒNG 1 NGƯỜI','500000'),
-('LP02',N'PHÒNG 1 NGƯỜI','700000'),
-('LP03',N'PHÒNG 2 NGƯỜI','900000'),
-('LP04',N'PHÒNG 2 NGƯỜI','1200000'),
-('LP05',N'PHÒNG 4 NGƯỜI','1500000')
+('LP02',N'PHÒNG 2 NGƯỜI','900000'),
+('LP03',N'PHÒNG 4 NGƯỜI','1500000')
 
 INSERT INTO Phong values
-('MP01',N'Trống','LP01'),
-('MP02',N'Trống','LP01'),
-('MP03',N'Trống','LP02'),
-('MP04',N'Trống','LP02'),
-('MP05',N'Trống','LP03'),
-('MP06',N'Trống','LP03'),
-('MP07',N'Trống','LP03'),
-('MP08',N'Trống','LP04'),
-('MP09',N'Trống','LP04'),
-('MP10',N'Trống','LP05'),
-('MP11',N'Trống','LP05')
+('101',N'Trống','LP01'),
+('102',N'Trống','LP01'),
+('103',N'Trống','LP02'),
+('105',N'Trống','LP02'),
+('201',N'Trống','LP03'),
+('202',N'Trống','LP03'),
+('203',N'Trống','LP03'),
+('204',N'Trống','LP01'),
+('205',N'Trống','LP01'),
+('301',N'Trống','LP02'),
+('302',N'Trống','LP02'),
+('303',N'Trống','LP03'),
+('304',N'Trống','LP03'),
+('305',N'Trống','LP01'),
+('401',N'Trống','LP02'),
+('402',N'Trống','LP03'),
+('403',N'Trống','LP03'),
+('404',N'Trống','LP02'),
+('405',N'Trống','LP01')
 go
 
-insert into PhieuDichVu values
-('DV01',N'Trọn gói ăn uống trong tuần tự phục vụ','300000'),
-('DV02',N'Trọn gói ăn uống trong tuần được phục vụ','350000'),
-('DV03',N'Trọn gói ăn uống,Gói phục vụ và gửi xe miễn phí','400000'),
-('DV04',N'Trọn gói ăn uống tự chọn ,Gói phục vụ và miễn phí giữ xe','600000')
-Go
-
-INSERT INTO PhieuDangKy values
-('PDK01','DV01','031100004776','MP01','200000'),
-('PDK02','DV02','001000118903','MP02','200000'),
-('PDK03','DV01','030861008133','MP03','300000'),
-('PDK04','DV02','072098980989','MP04','300000'),
-('PDK05','DV02','031300001766','MP05','400000'),
-('PDK06','DV03','056078907811','MP06','400000'),
-('PDK07','DV04','072098980989','MP07','500000'),
-('PDK08','DV03','001071000030','MP08','500000'),
-('PDK09','DV04','001000118903','MP09','700000'),
-('PDK10','DV04','079098700789','MP10','700000')
-Go
-
 INSERT INTO HoaDon values
-('HD01','031100004776','NV001','MP01','10/10/2020','13/10/2020','700000'),
-('HD02','001000118903','NV002','MP02','10/10/2020','14/10/2020','700000'),
-('HD03','030861008133','NV003','MP03','10/10/2020','15/10/2020','1000000'),
-('HD04','072098980989','NV004','MP04','10/10/2020','20/10/2020','1050000'),
-('HD05','031300001766','NV005','MP05','10/10/2020','21/10/2020','1250000'),
-('HD06','056078907811','NV006','MP06','10/10/2020','22/10/2020','1300000'),
-('HD07','072098980989','NV007','MP07','10/10/2020','23/10/2020','1500000'),
-('HD08','001071000030','NV008','MP08','10/10/2020','7/11/2020','1600000'),
-('HD09','001000118903','NV009','MP09','10/10/2020','15/11/2020','1800000'),
-('HD10','079098700789','NV010','MP10','10/10/2020','20/11/2020','2100000')
+('HD01','031100004776','NV001','101','10/10/2020','13/10/2020','700000'),
+('HD02','001000118903','NV002','103','10/10/2020','14/10/2020','700000'),
+('HD03','030861008133','NV003','205','10/10/2020','15/10/2020','1000000'),
+('HD04','072098980989','NV004','202','10/10/2020','20/10/2020','1050000'),
+('HD05','031300001766','NV005','304','10/10/2020','21/10/2020','1250000'),
+('HD06','056078907811','NV006','301','10/10/2020','22/10/2020','1300000'),
+('HD07','072098980989','NV007','403','10/10/2020','23/10/2020','1500000'),
+('HD08','001071000030','NV008','402','10/10/2020','7/11/2020','1600000'),
+('HD09','001000118903','NV009','102','10/10/2020','15/11/2020','1800000'),
+('HD10','079098700789','NV010','303','10/10/2020','20/11/2020','2100000')
 Go
+
+select * from ChucVu
+select * from HoaDon
+select * from KhachHang
+select * from LoaiPhong
+select * from NhanVien
+select * from Phong

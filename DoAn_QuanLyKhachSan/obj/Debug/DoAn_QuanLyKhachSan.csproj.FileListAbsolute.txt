@@ -32,3 +32,6 @@ E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachS
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIDatPhong.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.EditForm.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
+D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
+D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
+D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
