@@ -32,5 +32,16 @@ namespace DoAn_QuanLyKhachSan.Properties {
                 return ((string)(this["QuanLyKhachSanConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=KILLUA\\SQLEXPRESS;Initial Catalog=QuanLyKhachSan;Integrated Security=" +
+            "True")]
+        public string QuanLyKhachSanConnectionString1 {
+            get {
+                return ((string)(this["QuanLyKhachSanConnectionString1"]));
+            }
+        }
     }
 }

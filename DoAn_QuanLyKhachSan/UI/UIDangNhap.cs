@@ -38,14 +38,41 @@ namespace DoAn_QuanLyKhachSan
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            this.Alert("XIN CHÀO A", AlertForm.enmType.Success);
-            this.Hide();
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                string user = txtUser.Text;
+                string pass = txtPass.Text;
+                if (user == "" && pass == "")
+                {
+                    return;
+                }
+                NhanVien nv = db.NhanViens.FirstOrDefault(x => x.tenDN == user && x.pass == pass);
+                if (nv != null)
+                {
+                    this.Alert("XIN CHÀO A", AlertForm.enmType.Success);
+                    this.Hide();
+                }
+            }
         }
 
         public void Alert(string msg, AlertForm.enmType type)
         {
             AlertForm frm = new AlertForm();
             frm.showAlert(msg, type);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            WarningForm msg = new WarningForm();
+            msg.Show();
+        }
+
+        private void txtPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick();
+            }
         }
     }
 }
