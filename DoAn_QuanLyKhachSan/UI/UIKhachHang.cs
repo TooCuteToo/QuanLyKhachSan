@@ -35,6 +35,8 @@ namespace DoAn_QuanLyKhachSan
 
         private void initListView()
         {
+            khachHangLV.Items.Clear();
+            initListViewColumn();
             foreach (KhachHang kh in QuanLyDAO<KhachHang>.getData()) {
                 ListViewItem item = new ListViewItem(new string[] { kh.CMND, kh.tenKH, kh.diaChi, kh.gioiTinh, kh.SDT });
                 item.Tag = kh;
@@ -58,20 +60,29 @@ namespace DoAn_QuanLyKhachSan
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (khachHangLV.SelectedItems.Count == 0) return;
+            if (khachHangLV.SelectedItems.Count == 0 || khachHangLV.SelectedItems[0].Tag == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             KhachHang selectedItem = khachHangLV.SelectedItems[0].Tag as KhachHang;
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
 
-            
+        private void form_close(object sender, FormClosedEventArgs e)
+        {
+            initListView();
         }
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
             KhachHang selectedItem = khachHangLV.SelectedItems[0].Tag as KhachHang;
-            new KhachHangDAO().removeData(selectedItem);
+            //new KhachHangDAO().removeData(selectedItem);
+            QuanLyDAO<KhachHang>.remove(selectedItem, "CMND");
 
             khachHangLV.Items.Clear();
             initListView();
@@ -100,6 +111,13 @@ namespace DoAn_QuanLyKhachSan
                 item.Tag = kh;
                 khachHangLV.Items.Add(item);
             }
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            EditForm edit = new EditForm();
+            edit.showAdd(new KhachHang());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
         }
     }
 }

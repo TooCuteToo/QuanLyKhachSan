@@ -34,6 +34,9 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void initListView()
         {
+            phongLV.Items.Clear();
+            initListViewColumn();
+
             foreach (Phong phong in QuanLyDAO<Phong>.getData()) {
                 ListViewItem item = new ListViewItem(new string[] { phong.soPhong, phong.tinhTrang, phong.maLoai });
                 item.Tag = phong;
@@ -58,10 +61,22 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            if (phongLV.SelectedItems.Count == 0 || phongLV.SelectedItems[0].Tag == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Phong selectedItem = phongLV.SelectedItems[0].Tag as Phong;
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void form_close(object sender, FormClosedEventArgs e)
+        {
+            initListView();
         }
 
         private void removeBtn_Click(object sender, EventArgs e)

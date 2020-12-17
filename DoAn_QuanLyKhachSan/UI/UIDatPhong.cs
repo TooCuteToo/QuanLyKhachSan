@@ -35,6 +35,9 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void initListView()
         {
+            datPhongLV.Items.Clear();
+            initListViewColumn();
+
             foreach (HoaDon datPhong in QuanLyDAO<HoaDon>.getData()) {
                 ListViewItem item = new ListViewItem(new string[] { 
                     datPhong.maHD, 
@@ -81,6 +84,12 @@ namespace DoAn_QuanLyKhachSan.UI
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void form_close(object sender, FormClosedEventArgs e)
+        {
+            initListView();
         }
 
         private void removeBtn_Click(object sender, EventArgs e)
@@ -117,6 +126,13 @@ namespace DoAn_QuanLyKhachSan.UI
                 item.Tag = hd;
                 datPhongLV.Items.Add(item);
             }
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            EditForm edit = new EditForm();
+            edit.showAdd(new HoaDon());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
         }
     }
 }
