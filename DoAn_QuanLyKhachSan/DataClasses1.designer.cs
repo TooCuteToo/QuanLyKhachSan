@@ -51,7 +51,7 @@ namespace DoAn_QuanLyKhachSan
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::DoAn_QuanLyKhachSan.Properties.Settings.Default.QuanLyKhachSanConnectionString, mappingSource)
+				base(global::DoAn_QuanLyKhachSan.Properties.Settings.Default.QuanLyKhachSanConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
