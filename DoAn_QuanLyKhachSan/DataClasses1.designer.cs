@@ -1113,9 +1113,9 @@ namespace DoAn_QuanLyKhachSan
 		
 		private string _gioiTinh;
 		
-		private System.Nullable<System.DateTime> _ngSinh;
+		private System.Nullable<System.DateTime> _ngaySinh;
 		
-		private System.Nullable<System.DateTime> _ngVaoLam;
+		private System.Nullable<System.DateTime> _ngayVaoLam;
 		
 		private string _diaChi;
 		
@@ -1141,10 +1141,10 @@ namespace DoAn_QuanLyKhachSan
     partial void OnmaCVChanged();
     partial void OngioiTinhChanging(string value);
     partial void OngioiTinhChanged();
-    partial void OnngSinhChanging(System.Nullable<System.DateTime> value);
-    partial void OnngSinhChanged();
-    partial void OnngVaoLamChanging(System.Nullable<System.DateTime> value);
-    partial void OnngVaoLamChanged();
+    partial void OnngaySinhChanging(System.Nullable<System.DateTime> value);
+    partial void OnngaySinhChanged();
+    partial void OnngayVaoLamChanging(System.Nullable<System.DateTime> value);
+    partial void OnngayVaoLamChanged();
     partial void OndiaChiChanging(string value);
     partial void OndiaChiChanged();
     partial void OnSDTChanging(string value);
@@ -1246,42 +1246,42 @@ namespace DoAn_QuanLyKhachSan
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngSinh", DbType="Date")]
-		public System.Nullable<System.DateTime> ngSinh
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngaySinh", DbType="Date")]
+		public System.Nullable<System.DateTime> ngaySinh
 		{
 			get
 			{
-				return this._ngSinh;
+				return this._ngaySinh;
 			}
 			set
 			{
-				if ((this._ngSinh != value))
+				if ((this._ngaySinh != value))
 				{
-					this.OnngSinhChanging(value);
+					this.OnngaySinhChanging(value);
 					this.SendPropertyChanging();
-					this._ngSinh = value;
-					this.SendPropertyChanged("ngSinh");
-					this.OnngSinhChanged();
+					this._ngaySinh = value;
+					this.SendPropertyChanged("ngaySinh");
+					this.OnngaySinhChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngVaoLam", DbType="Date")]
-		public System.Nullable<System.DateTime> ngVaoLam
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngayVaoLam", DbType="Date")]
+		public System.Nullable<System.DateTime> ngayVaoLam
 		{
 			get
 			{
-				return this._ngVaoLam;
+				return this._ngayVaoLam;
 			}
 			set
 			{
-				if ((this._ngVaoLam != value))
+				if ((this._ngayVaoLam != value))
 				{
-					this.OnngVaoLamChanging(value);
+					this.OnngayVaoLamChanging(value);
 					this.SendPropertyChanging();
-					this._ngVaoLam = value;
-					this.SendPropertyChanged("ngVaoLam");
-					this.OnngVaoLamChanged();
+					this._ngayVaoLam = value;
+					this.SendPropertyChanged("ngayVaoLam");
+					this.OnngayVaoLamChanged();
 				}
 			}
 		}

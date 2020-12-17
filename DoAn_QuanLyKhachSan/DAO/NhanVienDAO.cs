@@ -32,8 +32,8 @@ namespace DoAn_QuanLyKhachSan.DAO
                 selectedItem.diaChi = nv.diaChi;
                 selectedItem.gioiTinh = nv.gioiTinh;
 
-                selectedItem.ngSinh = nv.ngSinh;
-                selectedItem.ngVaoLam = nv.ngVaoLam;
+                selectedItem.ngaySinh = nv.ngaySinh;
+                selectedItem.ngayVaoLam = nv.ngayVaoLam;
 
                 db.SubmitChanges();
             }

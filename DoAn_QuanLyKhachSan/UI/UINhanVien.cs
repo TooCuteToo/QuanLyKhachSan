@@ -36,13 +36,16 @@ namespace DoAn_QuanLyKhachSan
 
         private void initListView()
         {
+            nhanVienLV.Items.Clear();
+            initListViewColumn();
+
             foreach (NhanVien nv in QuanLyDAO<NhanVien>.getData())
             {
                 ListViewItem item = new ListViewItem(new string[] {
                         nv.maNV,
                         nv.tenNV,
                         nv.gioiTinh,
-                        nv.ngSinh.Value.ToString("dd/MM/yyyy"),
+                        nv.ngaySinh.Value.ToString("dd/MM/yyyy"),
                         nv.diaChi,
                         nv.SDT
                     });
@@ -79,21 +82,32 @@ namespace DoAn_QuanLyKhachSan
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            if (nhanVienLV.SelectedItems.Count == 0 || nhanVienLV.SelectedItems[0].Tag == null)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             NhanVien selectedItem = nhanVienLV.SelectedItems[0].Tag as NhanVien;
            
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void form_close(object sender, FormClosedEventArgs e)
+        {
+            initListView();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
             var selectedItem = thuocTinhCB.SelectedItem;
 
-            List<NhanVien> resultList = QuanLyDAO<NhanVien>.searchData(selectedItem.ToString(), searchTxt.Text);
-
             nhanVienLV.Items.Clear();
-
             initListViewColumn();
+            
+            List<NhanVien> resultList = QuanLyDAO<NhanVien>.searchData(selectedItem.ToString(), searchTxt.Text);
 
             foreach (NhanVien nv in resultList)
             {
@@ -101,7 +115,7 @@ namespace DoAn_QuanLyKhachSan
                     nv.maNV, 
                     nv.tenDN, 
                     nv.gioiTinh, 
-                    nv.ngSinh.Value.ToString("dd/MM/yyyy"), 
+                    nv.ngaySinh.Value.ToString("dd/MM/yyyy"), 
                     nv.diaChi, 
                     nv.SDT 
                 });
