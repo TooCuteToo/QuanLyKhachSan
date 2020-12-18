@@ -43,5 +43,16 @@ namespace DoAn_QuanLyKhachSan.Properties {
                 return ((string)(this["QuanLyKhachSanConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=nhomancu.database.windows.net;Initial Catalog=QuanLyKhachSan;User ID=" +
+            "nhomancu;Password=ancugroup.3")]
+        public string QuanLyKhachSanConnectionString2 {
+            get {
+                return ((string)(this["QuanLyKhachSanConnectionString2"]));
+            }
+        }
     }
 }

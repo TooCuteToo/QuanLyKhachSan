@@ -62,16 +62,16 @@ namespace DoAn_QuanLyKhachSan.DAO
             }
         }
 
-        public static void remove(T t, string columnName)
-        {
-            using (DataClasses1DataContext db = new DataClasses1DataContext())
-            {
-                var item = db.GetTable<T>().FirstOrDefault(elem => typeof(T).GetProperty(columnName).GetValue(elem).ToString().Contains(""));
-                db.DeferredLoadingEnabled = false;
-                db.GetTable<T>().DeleteOnSubmit(item);
-                db.SubmitChanges();
-            }
-        }
+        //public static void remove(T t, string columnName)
+        //{
+        //    using (DataClasses1DataContext db = new DataClasses1DataContext())
+        //    {
+        //        var item = db.GetTable<T>().FirstOrDefault(elem => typeof(T).GetProperty(columnName).GetValue(elem).ToString().Contains(""));
+        //        db.DeferredLoadingEnabled = false;
+        //        db.GetTable<T>().DeleteOnSubmit(item);
+        //        db.SubmitChanges();
+        //    }
+        //}
 
 
         public abstract void removeData(T t);

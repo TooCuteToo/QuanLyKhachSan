@@ -42,14 +42,17 @@ namespace DoAn_QuanLyKhachSan
             {
                 string user = txtUser.Text;
                 string pass = txtPass.Text;
+
                 if (user == "" && pass == "")
                 {
                     return;
                 }
+
                 NhanVien nv = db.NhanViens.FirstOrDefault(x => x.tenDN == user && x.pass == pass);
+
                 if (nv != null)
                 {
-                    this.Alert("XIN CHÀO A", AlertForm.enmType.Success);
+                    this.Alert("XIN CHÀO " + nv.tenNV.ToUpper(), AlertForm.enmType.Success);
                     this.Hide();
                 }
             }

@@ -134,6 +134,7 @@
             this.addBtn.Size = new System.Drawing.Size(28, 34);
             this.addBtn.TabIndex = 7;
             this.addBtn.UseVisualStyleBackColor = true;
+            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // searchTxt
             // 

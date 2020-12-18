@@ -35,29 +35,37 @@ namespace DoAn_QuanLyKhachSan.UI
 
             foreach (PropertyInfo property in keys)
             {
-                MessageBox.Show(property.Name);
+                Label label = new Label()
+                {
+                    Location = new System.Drawing.Point(10, y += 50),
+                    Text = property.Name,
+                };
+
                 if (property.Name.Contains("ngay"))
                 {
                     DateTimePicker datePicker = new DateTimePicker()
                     {
-                        Location = new System.Drawing.Point(200, y += 50),
+                        Location = new System.Drawing.Point(200, y),
                         Tag = property,
                         CustomFormat = "dd/MM/yyyy",
                         Format = DateTimePickerFormat.Custom,
                     };
 
+                    panel1.Controls.Add(label);
                     panel1.Controls.Add(datePicker);
                     continue;
                 }
 
-                if (!property.Name.EndsWith("s"))
+                if (!property.Name.EndsWith("s") && !property.ToString().Contains("DoAn"))
                 {
                     TextBox textBox = new TextBox()
                     {
-                        Location = new System.Drawing.Point(200, y += 50),
+                        Location = new System.Drawing.Point(200, y),
                         Tag = property,
+                        //Size = new Size(200, 120),
                     };
 
+                    panel1.Controls.Add(label);
                     panel1.Controls.Add(textBox);
                 }
             }
@@ -82,6 +90,12 @@ namespace DoAn_QuanLyKhachSan.UI
 
             foreach (PropertyInfo property in keys)
             {
+                Label label = new Label()
+                {
+                    Location = new System.Drawing.Point(10, y += 50),
+                    Text = property.Name,
+                };
+
                 var value = property.GetValue(t);
 
                 if (value != null && !value.ToString().Contains("System"))
@@ -91,12 +105,13 @@ namespace DoAn_QuanLyKhachSan.UI
                         DateTimePicker datePicker = new DateTimePicker()
                         {
                             Value = DateTime.Parse(value.ToString()),
-                            Location = new System.Drawing.Point(200, y += 50),
+                            Location = new System.Drawing.Point(200, y),
                             Tag = property,
                             CustomFormat = "dd/MM/yyyy",
                             Format = DateTimePickerFormat.Custom,
                         };
 
+                        panel1.Controls.Add(label);
                         panel1.Controls.Add(datePicker);
                         continue;
                     }
@@ -104,11 +119,13 @@ namespace DoAn_QuanLyKhachSan.UI
                     TextBox textBox = new TextBox()
                     {
                         Text = value.ToString(),
-                        Location = new System.Drawing.Point(200, y += 50),
+                        Location = new System.Drawing.Point(200, y),
                         Tag = property,
                         Enabled = !property.Name.Contains("ma"),
+                        Size = new Size(200, 120),
                     };
 
+                    panel1.Controls.Add(label);
                     panel1.Controls.Add(textBox);
                 }
             }

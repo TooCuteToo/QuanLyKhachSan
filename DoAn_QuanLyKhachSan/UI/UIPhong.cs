@@ -105,5 +105,12 @@ namespace DoAn_QuanLyKhachSan.UI
                 phongLV.Items.Add(item);
             }
         }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            EditForm edit = new EditForm();
+            edit.showAdd(new Phong());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
     }
 }

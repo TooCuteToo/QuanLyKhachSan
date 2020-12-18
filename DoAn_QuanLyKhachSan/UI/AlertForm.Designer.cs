@@ -62,7 +62,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.delete;
-            this.pictureBox1.Location = new System.Drawing.Point(297, 17);
+            this.pictureBox1.Location = new System.Drawing.Point(352, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(33, 40);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.ClientSize = new System.Drawing.Size(357, 75);
+            this.ClientSize = new System.Drawing.Size(397, 75);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.thongBaoTxt);

@@ -81,8 +81,8 @@ namespace DoAn_QuanLyKhachSan
         private void removeBtn_Click(object sender, EventArgs e)
         {
             KhachHang selectedItem = khachHangLV.SelectedItems[0].Tag as KhachHang;
-            //new KhachHangDAO().removeData(selectedItem);
-            QuanLyDAO<KhachHang>.remove(selectedItem, "CMND");
+            new KhachHangDAO().removeData(selectedItem);
+            //QuanLyDAO<KhachHang>.remove(selectedItem, "CMND");
 
             khachHangLV.Items.Clear();
             initListView();

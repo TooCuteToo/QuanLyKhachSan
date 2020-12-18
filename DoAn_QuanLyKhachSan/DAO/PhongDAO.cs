@@ -18,12 +18,11 @@ namespace DoAn_QuanLyKhachSan.DAO
         {
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                Phong selectedItem = db.Phongs.Where(elem => elem.soPhong == phong.soPhong).FirstOrDefault();
+                Phong selectedItem = db.Phongs.FirstOrDefault(elem => elem.soPhong == phong.soPhong);
 
-                selectedItem.tinhTrang = phong.tinhTrang;
-                selectedItem.LoaiPhong = phong.LoaiPhong;
-                selectedItem.maLoai = phong.maLoai;
+                db.Phongs.DeleteOnSubmit(selectedItem);
 
+                db.Phongs.InsertOnSubmit(phong);
                 db.SubmitChanges();
             }
         }

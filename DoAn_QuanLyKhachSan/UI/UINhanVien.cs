@@ -125,6 +125,13 @@ namespace DoAn_QuanLyKhachSan
             }
         }
 
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            EditForm edit = new EditForm();
+            edit.showAdd(new NhanVien());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
 
     }
 }
