@@ -19,40 +19,37 @@ namespace DoAn_QuanLyKhachSan
         public UINhanVien()
         {
             InitializeComponent();
-            initListViewColumn();
 
             initListView();
             initCombobox();
-        }
 
-        private void initListViewColumn()
-        {
-            nhanVienLV.Items.Add(new ListViewItem(new string[] { "MÃ NHÂN VIÊN", "TÊN NHÂN VIÊN", "GIỚI TÍNH", "NGÀY SINH", "ĐỊA CHỈ", "SDT" }));
-            //rgba(245, 246, 250,1.0)
-            nhanVienLV.Items[0].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            nhanVienLV.Items[0].Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nhanVienLV.Items[0].ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
         }
 
         private void initListView()
         {
-            nhanVienLV.Items.Clear();
-            initListViewColumn();
-
+            nhanVienGridView.Rows.Clear();
+            
             foreach (NhanVien nv in QuanLyDAO<NhanVien>.getData())
             {
-                ListViewItem item = new ListViewItem(new string[] {
-                        nv.maNV,
-                        nv.tenNV,
-                        nv.gioiTinh,
-                        nv.ngaySinh.Value.ToString("dd/MM/yyyy"),
-                        nv.diaChi,
-                        nv.SDT
-                    });
+                int rowIndex = nhanVienGridView.Rows.Add();
 
-                item.Tag = nv;
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = nhanVienGridView.Rows[rowIndex++];
 
-                nhanVienLV.Items.Add(item);
+                row.Cells["maNV"].Value = nv.maNV;
+                row.Cells["tenNV"].Value = nv.tenNV;
+
+                row.Cells["gioiTinh"].Value = nv.gioiTinh;
+                row.Cells["ngaySinh"].Value = nv.ngaySinh.Value.ToString("dd/MM/yyyy");
+
+                row.Cells["ngayVaoLam"].Value = nv.ngayVaoLam.Value.ToString("dd/MM/yyyy");
+                row.Cells["diaChi"].Value = nv.diaChi;
+
+                row.Cells["sdt"].Value = nv.SDT;
+                row.Tag = nv;
             }
         }
 
@@ -73,22 +70,33 @@ namespace DoAn_QuanLyKhachSan
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            NhanVien selectedNV = nhanVienLV.SelectedItems[0].Tag as NhanVien;
+            if (nhanVienGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xoá!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult isDelete = MessageBox.Show("Bạn có chắc chắn là muốn xoá dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isDelete == DialogResult.No) return;
+
+            UIQuanLy.Alert("Xoá thành công!!!", AlertForm.enmType.Error);
+
+            NhanVien selectedNV = nhanVienGridView.SelectedRows[0].Tag as NhanVien;
             new NhanVienDAO().removeData(selectedNV);
 
-            nhanVienLV.Items.Clear();
             initListView();
         }
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (nhanVienLV.SelectedItems.Count == 0 || nhanVienLV.SelectedItems[0].Tag == null)
+            if (nhanVienGridView.SelectedRows.Count == 0 || nhanVienGridView.SelectedRows[0].Tag == null)
             {
                 MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            NhanVien selectedItem = nhanVienLV.SelectedItems[0].Tag as NhanVien;
+            NhanVien selectedItem = nhanVienGridView.SelectedRows[0].Tag as NhanVien;
            
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
@@ -104,24 +112,28 @@ namespace DoAn_QuanLyKhachSan
         {
             var selectedItem = thuocTinhCB.SelectedItem;
 
-            nhanVienLV.Items.Clear();
-            initListViewColumn();
+            nhanVienGridView.Rows.Clear();
             
             List<NhanVien> resultList = QuanLyDAO<NhanVien>.searchData(selectedItem.ToString(), searchTxt.Text);
 
             foreach (NhanVien nv in resultList)
             {
-                ListViewItem item = new ListViewItem(new string[] { 
-                    nv.maNV, 
-                    nv.tenDN, 
-                    nv.gioiTinh, 
-                    nv.ngaySinh.Value.ToString("dd/MM/yyyy"), 
-                    nv.diaChi, 
-                    nv.SDT 
-                });
+                int rowIndex = nhanVienGridView.Rows.Add();
 
-                item.Tag = nv;
-                nhanVienLV.Items.Add(item);
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = nhanVienGridView.Rows[rowIndex++];
+
+                row.Cells["maNV"].Value = nv.maNV;
+                row.Cells["tenNV"].Value = nv.tenNV;
+
+                row.Cells["gioiTinh"].Value = nv.gioiTinh;
+                row.Cells["ngaySinh"].Value = nv.ngaySinh.Value.ToString("dd/MM/yyyy");
+
+                row.Cells["ngayVaoLam"].Value = nv.ngayVaoLam.Value.ToString("dd/MM/yyyy");
+                row.Cells["diaChi"].Value = nv.diaChi;
+
+                row.Cells["sdt"].Value = nv.SDT;
+                row.Tag = nv;
             }
         }
 
@@ -132,6 +144,22 @@ namespace DoAn_QuanLyKhachSan
             edit.FormClosed += new FormClosedEventHandler(form_close);
         }
 
+        private void nhanVienGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
 
+            rightClickContextMenu.Show(this, nhanVienGridView.PointToClient(Cursor.Position));//places the menu at the pointer position
+        }
+
+        private void nhanVienGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) return;
+
+            NhanVien selectedItem = nhanVienGridView.SelectedRows[0].Tag as NhanVien;
+
+            EditForm edit = new EditForm();
+            edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
     }
 }

@@ -18,30 +18,36 @@ namespace DoAn_QuanLyKhachSan
         public UIKhachHang()
         {
             InitializeComponent();
-            initListViewColumn();
 
             initListView();
             initCombobox();
-        }
 
-        private void initListViewColumn()
-        {
-            khachHangLV.Items.Add(new ListViewItem(new string[] { "CMND", "TÊN KHÁCH HÀNG", "ĐỊA CHỈ", "GIỚI TÍNH", "SDT" }));
-            //rgba(245, 246, 250,1.0)
-            khachHangLV.Items[0].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            khachHangLV.Items[0].Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            khachHangLV.Items[0].ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
         }
 
         private void initListView()
         {
-            khachHangLV.Items.Clear();
-            initListViewColumn();
-            foreach (KhachHang kh in QuanLyDAO<KhachHang>.getData()) {
-                ListViewItem item = new ListViewItem(new string[] { kh.CMND, kh.tenKH, kh.diaChi, kh.gioiTinh, kh.SDT });
-                item.Tag = kh;
-                khachHangLV.Items.Add(item);
-            }
+            khachHangGridView.Rows.Clear();
+
+            foreach (KhachHang kh in QuanLyDAO<KhachHang>.getData()) 
+            {
+                int rowIndex = khachHangGridView.Rows.Add();
+
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = khachHangGridView.Rows[rowIndex++];
+
+                row.Cells["cmnd"].Value = kh.CMND;
+                row.Cells["tenKH"].Value = kh.tenKH;
+
+                row.Cells["diaChi"].Value = kh.diaChi;
+                row.Cells["gioiTinh"].Value = kh.gioiTinh;
+
+                row.Cells["sdt"].Value = kh.SDT;
+
+                row.Tag = kh;
+            };
         }
 
         private void initCombobox()
@@ -60,13 +66,13 @@ namespace DoAn_QuanLyKhachSan
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (khachHangLV.SelectedItems.Count == 0 || khachHangLV.SelectedItems[0].Tag == null)
+            if (khachHangGridView.SelectedRows.Count == 0 || khachHangGridView.SelectedRows[0].Tag == null)
             {
                 MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            KhachHang selectedItem = khachHangLV.SelectedItems[0].Tag as KhachHang;
+            KhachHang selectedItem = khachHangGridView.SelectedRows[0].Tag as KhachHang;
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
@@ -80,11 +86,23 @@ namespace DoAn_QuanLyKhachSan
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            KhachHang selectedItem = khachHangLV.SelectedItems[0].Tag as KhachHang;
+            if (khachHangGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xoá!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult isDelete = MessageBox.Show("Bạn có chắc chắn là muốn xoá dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isDelete == DialogResult.No) return;
+
+            UIQuanLy.Alert("Xoá thành công!!!", AlertForm.enmType.Error);
+            
+            KhachHang selectedItem = khachHangGridView.SelectedRows[0].Tag as KhachHang;
             new KhachHangDAO().removeData(selectedItem);
             //QuanLyDAO<KhachHang>.remove(selectedItem, "CMND");
 
-            khachHangLV.Items.Clear();
+            khachHangGridView.Rows.Clear();
             initListView();
         }
 
@@ -94,22 +112,24 @@ namespace DoAn_QuanLyKhachSan
             
             List<KhachHang> resultList = QuanLyDAO<KhachHang>.searchData(selectedItem.ToString(), searchTxt.Text);
 
-            khachHangLV.Items.Clear();
-
-            initListViewColumn();
+            khachHangGridView.Rows.Clear();
 
             foreach (KhachHang kh in resultList)
             {
-                ListViewItem item = new ListViewItem(new string[] { 
-                    kh.CMND, 
-                    kh.tenKH, 
-                    kh.diaChi, 
-                    kh.gioiTinh, 
-                    kh.SDT, 
-                });
+                int rowIndex = khachHangGridView.Rows.Add();
 
-                item.Tag = kh;
-                khachHangLV.Items.Add(item);
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = khachHangGridView.Rows[rowIndex++];
+
+                row.Cells["cmnd"].Value = kh.CMND;
+                row.Cells["tenKH"].Value = kh.tenKH;
+
+                row.Cells["diaChi"].Value = kh.diaChi;
+                row.Cells["gioiTinh"].Value = kh.gioiTinh;
+
+                row.Cells["sdt"].Value = kh.SDT;
+
+                row.Tag = kh;
             }
         }
 
@@ -117,6 +137,24 @@ namespace DoAn_QuanLyKhachSan
         {
             EditForm edit = new EditForm();
             edit.showAdd(new KhachHang());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void khachHangGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+
+            rightClickContextMenu.Show(this, khachHangGridView.PointToClient(Cursor.Position));//places the menu at the pointer position
+        }
+
+        private void khachHangGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) return;
+
+            KhachHang selectedItem = khachHangGridView.SelectedRows[0].Tag as KhachHang;
+
+            EditForm edit = new EditForm();
+            edit.showEdit(selectedItem);
             edit.FormClosed += new FormClosedEventHandler(form_close);
         }
     }

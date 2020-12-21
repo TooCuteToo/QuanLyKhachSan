@@ -28,88 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.datPhongLV = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.searchBtn = new System.Windows.Forms.Button();
+            this.searchBtn = new Guna.UI2.WinForms.Guna2Button();
+            this.searchTxt = new Guna.UI2.WinForms.Guna2TextBox();
+            this.thuocTinhCB = new Guna.UI2.WinForms.Guna2ComboBox();
             this.editBtn = new System.Windows.Forms.Button();
             this.removeBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
-            this.searchTxt = new System.Windows.Forms.TextBox();
-            this.thuocTinhCB = new System.Windows.Forms.ComboBox();
+            this.datPhongGridView = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.maHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayDat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tienThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rightClickContextMenu = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datPhongGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // datPhongLV
-            // 
-            this.datPhongLV.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.datPhongLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.datPhongLV.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.datPhongLV.FullRowSelect = true;
-            this.datPhongLV.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.datPhongLV.Location = new System.Drawing.Point(0, 58);
-            this.datPhongLV.Name = "datPhongLV";
-            this.datPhongLV.Size = new System.Drawing.Size(932, 341);
-            this.datPhongLV.TabIndex = 0;
-            this.datPhongLV.UseCompatibleStateImageBehavior = false;
-            this.datPhongLV.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "MÃ HOÁ ĐƠN";
-            this.columnHeader1.Width = 150;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "CMND";
-            this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "MÃ NHÂN VIÊN";
-            this.columnHeader3.Width = 150;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "SỐ PHÒNG";
-            this.columnHeader4.Width = 130;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = " NGÀY ĐẶT";
-            this.columnHeader5.Width = 130;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "NGÀY TRẢ";
-            this.columnHeader6.Width = 100;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "THÀNH TIỀN";
-            this.columnHeader7.Width = 150;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.searchBtn);
+            this.panel1.Controls.Add(this.searchTxt);
+            this.panel1.Controls.Add(this.thuocTinhCB);
             this.panel1.Controls.Add(this.editBtn);
             this.panel1.Controls.Add(this.removeBtn);
             this.panel1.Controls.Add(this.addBtn);
-            this.panel1.Controls.Add(this.searchTxt);
-            this.panel1.Controls.Add(this.thuocTinhCB);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -118,13 +67,64 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(807, 14);
+            this.searchBtn.Animated = true;
+            this.searchBtn.BackColor = System.Drawing.Color.Transparent;
+            this.searchBtn.CheckedState.Parent = this.searchBtn;
+            this.searchBtn.CustomImages.Parent = this.searchBtn;
+            this.searchBtn.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
+            this.searchBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBtn.ForeColor = System.Drawing.Color.White;
+            this.searchBtn.HoverState.Parent = this.searchBtn;
+            this.searchBtn.Location = new System.Drawing.Point(738, 9);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(101, 23);
-            this.searchBtn.TabIndex = 9;
-            this.searchBtn.Text = "Tìm kiếm";
-            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.ShadowDecoration.Parent = this.searchBtn;
+            this.searchBtn.Size = new System.Drawing.Size(148, 36);
+            this.searchBtn.TabIndex = 12;
+            this.searchBtn.Text = "TÌM KIẾM";
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // searchTxt
+            // 
+            this.searchTxt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.searchTxt.DefaultText = "";
+            this.searchTxt.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.searchTxt.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.searchTxt.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchTxt.DisabledState.Parent = this.searchTxt;
+            this.searchTxt.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.searchTxt.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchTxt.FocusedState.Parent = this.searchTxt;
+            this.searchTxt.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.searchTxt.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.searchTxt.HoverState.Parent = this.searchTxt;
+            this.searchTxt.Location = new System.Drawing.Point(539, 9);
+            this.searchTxt.Name = "searchTxt";
+            this.searchTxt.PasswordChar = '\0';
+            this.searchTxt.PlaceholderText = "";
+            this.searchTxt.SelectedText = "";
+            this.searchTxt.ShadowDecoration.Parent = this.searchTxt;
+            this.searchTxt.Size = new System.Drawing.Size(193, 36);
+            this.searchTxt.TabIndex = 11;
+            // 
+            // thuocTinhCB
+            // 
+            this.thuocTinhCB.Animated = true;
+            this.thuocTinhCB.BackColor = System.Drawing.Color.Transparent;
+            this.thuocTinhCB.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.thuocTinhCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.thuocTinhCB.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.thuocTinhCB.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.thuocTinhCB.FocusedState.Parent = this.thuocTinhCB;
+            this.thuocTinhCB.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thuocTinhCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.thuocTinhCB.HoverState.Parent = this.thuocTinhCB;
+            this.thuocTinhCB.ItemHeight = 30;
+            this.thuocTinhCB.ItemsAppearance.Parent = this.thuocTinhCB;
+            this.thuocTinhCB.Location = new System.Drawing.Point(408, 9);
+            this.thuocTinhCB.Name = "thuocTinhCB";
+            this.thuocTinhCB.ShadowDecoration.Parent = this.thuocTinhCB;
+            this.thuocTinhCB.Size = new System.Drawing.Size(125, 36);
+            this.thuocTinhCB.TabIndex = 10;
             // 
             // editBtn
             // 
@@ -165,51 +165,168 @@
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // searchTxt
+            // datPhongGridView
             // 
-            this.searchTxt.Location = new System.Drawing.Point(618, 15);
-            this.searchTxt.Name = "searchTxt";
-            this.searchTxt.Size = new System.Drawing.Size(185, 20);
-            this.searchTxt.TabIndex = 4;
+            this.datPhongGridView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.datPhongGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.datPhongGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.datPhongGridView.BackgroundColor = System.Drawing.Color.White;
+            this.datPhongGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.datPhongGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.datPhongGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datPhongGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.datPhongGridView.ColumnHeadersHeight = 21;
+            this.datPhongGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.datPhongGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.maHD,
+            this.cmnd,
+            this.maNV,
+            this.soPhong,
+            this.ngayDat,
+            this.ngayTra,
+            this.tienThanhToan});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datPhongGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            this.datPhongGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datPhongGridView.EnableHeadersVisualStyles = false;
+            this.datPhongGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.datPhongGridView.Location = new System.Drawing.Point(0, 52);
+            this.datPhongGridView.Name = "datPhongGridView";
+            this.datPhongGridView.ReadOnly = true;
+            this.datPhongGridView.RowHeadersVisible = false;
+            this.datPhongGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.datPhongGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.datPhongGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.datPhongGridView.ShowCellToolTips = false;
+            this.datPhongGridView.ShowEditingIcon = false;
+            this.datPhongGridView.Size = new System.Drawing.Size(932, 347);
+            this.datPhongGridView.TabIndex = 3;
+            this.datPhongGridView.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
+            this.datPhongGridView.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.datPhongGridView.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.datPhongGridView.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.datPhongGridView.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.datPhongGridView.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.datPhongGridView.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.datPhongGridView.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.datPhongGridView.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.datPhongGridView.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.datPhongGridView.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.datPhongGridView.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.datPhongGridView.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.datPhongGridView.ThemeStyle.HeaderStyle.Height = 21;
+            this.datPhongGridView.ThemeStyle.ReadOnly = true;
+            this.datPhongGridView.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.datPhongGridView.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.datPhongGridView.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.datPhongGridView.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.datPhongGridView.ThemeStyle.RowsStyle.Height = 22;
+            this.datPhongGridView.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.datPhongGridView.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.datPhongGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datPhongGridView_CellMouseClick);
+            this.datPhongGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datPhongGridView_CellMouseDoubleClick);
             // 
-            // thuocTinhCB
+            // maHD
             // 
-            this.thuocTinhCB.FormattingEnabled = true;
-            this.thuocTinhCB.Location = new System.Drawing.Point(491, 15);
-            this.thuocTinhCB.Name = "thuocTinhCB";
-            this.thuocTinhCB.Size = new System.Drawing.Size(121, 21);
-            this.thuocTinhCB.TabIndex = 3;
+            this.maHD.HeaderText = "MÃ HOÁ ĐƠN";
+            this.maHD.Name = "maHD";
+            this.maHD.ReadOnly = true;
+            // 
+            // cmnd
+            // 
+            this.cmnd.HeaderText = "CMND";
+            this.cmnd.Name = "cmnd";
+            this.cmnd.ReadOnly = true;
+            // 
+            // maNV
+            // 
+            this.maNV.HeaderText = "MÃ NHÂN VIÊN";
+            this.maNV.Name = "maNV";
+            this.maNV.ReadOnly = true;
+            // 
+            // soPhong
+            // 
+            this.soPhong.HeaderText = "SỐ PHÒNG";
+            this.soPhong.Name = "soPhong";
+            this.soPhong.ReadOnly = true;
+            // 
+            // ngayDat
+            // 
+            this.ngayDat.HeaderText = "NGÀY ĐẶT";
+            this.ngayDat.Name = "ngayDat";
+            this.ngayDat.ReadOnly = true;
+            // 
+            // ngayTra
+            // 
+            this.ngayTra.HeaderText = "NGÀY TRẢ";
+            this.ngayTra.Name = "ngayTra";
+            this.ngayTra.ReadOnly = true;
+            // 
+            // tienThanhToan
+            // 
+            this.tienThanhToan.HeaderText = "THÀNH TIỀN";
+            this.tienThanhToan.Name = "tienThanhToan";
+            this.tienThanhToan.ReadOnly = true;
+            // 
+            // rightClickContextMenu
+            // 
+            this.rightClickContextMenu.Name = "rightClickContextMenu";
+            this.rightClickContextMenu.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.rightClickContextMenu.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.rightClickContextMenu.RenderStyle.ColorTable = null;
+            this.rightClickContextMenu.RenderStyle.RoundedEdges = true;
+            this.rightClickContextMenu.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.rightClickContextMenu.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.rightClickContextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.rightClickContextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.rightClickContextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.rightClickContextMenu.Size = new System.Drawing.Size(61, 4);
             // 
             // UIDatPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.datPhongLV);
+            this.Controls.Add(this.datPhongGridView);
             this.Controls.Add(this.panel1);
             this.Name = "UIDatPhong";
             this.Size = new System.Drawing.Size(932, 399);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datPhongGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView datPhongLV;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button editBtn;
         private System.Windows.Forms.Button removeBtn;
         private System.Windows.Forms.Button addBtn;
-        private System.Windows.Forms.TextBox searchTxt;
-        private System.Windows.Forms.ComboBox thuocTinhCB;
-        private System.Windows.Forms.Button searchBtn;
+        private Guna.UI2.WinForms.Guna2TextBox searchTxt;
+        private Guna.UI2.WinForms.Guna2ComboBox thuocTinhCB;
+        private Guna.UI2.WinForms.Guna2Button searchBtn;
+        private Guna.UI2.WinForms.Guna2DataGridView datPhongGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maNV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayDat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayTra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tienThanhToan;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip rightClickContextMenu;
     }
 }

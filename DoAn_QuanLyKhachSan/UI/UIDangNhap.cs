@@ -13,6 +13,7 @@ namespace DoAn_QuanLyKhachSan
     public partial class UIDangNhap : UserControl
     {
         public static event EventHandler UserControlDragging;
+        public static event EventHandler LoginExit;
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -25,7 +26,6 @@ namespace DoAn_QuanLyKhachSan
         public UIDangNhap()
         {
             InitializeComponent();
-            
         }
 
         private void UIDangNhap_MouseDown(object sender, MouseEventArgs e)
@@ -52,13 +52,14 @@ namespace DoAn_QuanLyKhachSan
 
                 if (nv != null)
                 {
+                    this.ParentForm.Tag = nv.tenNV;
                     this.Alert("XIN CHÀO " + nv.tenNV.ToUpper(), AlertForm.enmType.Success);
-                    this.Hide();
+                    LoginExit(null, EventArgs.Empty);
                 }
             }
         }
 
-        public void Alert(string msg, AlertForm.enmType type)
+        private void Alert(string msg, AlertForm.enmType type)
         {
             AlertForm frm = new AlertForm();
             frm.showAlert(msg, type);

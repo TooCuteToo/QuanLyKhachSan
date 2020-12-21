@@ -17,43 +17,38 @@ namespace DoAn_QuanLyKhachSan.UI
         public UIDatPhong()
         {
             InitializeComponent();
-            initListViewColumn();
 
             initListView();
             initCombobox();
-        }
 
-
-        private void initListViewColumn()
-        {
-            datPhongLV.Items.Add(new ListViewItem(new string[] { "MÃ HOÁ ĐƠN", "CMND", "MÃ NHÂN VIÊN", "SỐ PHÒNG", "NGÀY ĐẶT", "NGÀY TRẢ", "THÀNH TIỀN" }));
-            //rgba(245, 246, 250,1.0)
-            datPhongLV.Items[0].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            datPhongLV.Items[0].Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            datPhongLV.Items[0].ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
         }
 
         private void initListView()
         {
-            datPhongLV.Items.Clear();
-            initListViewColumn();
+            datPhongGridView.Rows.Clear();
 
-            foreach (HoaDon datPhong in QuanLyDAO<HoaDon>.getData()) {
-                ListViewItem item = new ListViewItem(new string[] { 
-                    datPhong.maHD, 
-                    datPhong.CMND, 
+            foreach (HoaDon datPhong in QuanLyDAO<HoaDon>.getData())
+            {
+                int rowIndex = datPhongGridView.Rows.Add();
 
-                    datPhong.maNV, 
-                    datPhong.soPhong, 
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = datPhongGridView.Rows[rowIndex++];
 
-                    datPhong.ngayDat.Value.ToString("dd/MM/yyyy"),
-                    datPhong.ngayTra.Value.ToString("dd/MM/yyyy"),
+                row.Cells["maHD"].Value = datPhong.maHD;
+                row.Cells["cmnd"].Value = datPhong.CMND;
 
-                    datPhong.tienThanhToan.ToString()
-                });
+                row.Cells["maNV"].Value = datPhong.maNV;
+                row.Cells["soPhong"].Value = datPhong.soPhong;
 
-                item.Tag = datPhong;
-                datPhongLV.Items.Add(item);
+                row.Cells["ngayDat"].Value = datPhong.ngayDat.Value.ToString("dd/MM/yyyy");
+                row.Cells["ngayTra"].Value = datPhong.ngayTra.Value.ToString("dd/MM/yyyy");
+
+                row.Cells["tienThanhToan"].Value = datPhong.tienThanhToan.ToString();
+
+                row.Tag = datPhong;
             }
         }
 
@@ -74,13 +69,13 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (datPhongLV.SelectedItems.Count == 0 || datPhongLV.SelectedItems[0].Tag == null)
+            if (datPhongGridView.SelectedRows.Count == 0 || datPhongGridView.SelectedRows[0].Tag == null)
             {
                 MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
  
-            HoaDon selectedItem = datPhongLV.SelectedItems[0].Tag as HoaDon;
+            HoaDon selectedItem = datPhongGridView.SelectedRows[0].Tag as HoaDon;
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
@@ -94,10 +89,22 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            HoaDon selectedItem = datPhongLV.SelectedItems[0].Tag as HoaDon;
+            if (datPhongGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xoá!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult isDelete = MessageBox.Show("Bạn có chắc chắn là muốn xoá dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isDelete == DialogResult.No) return;
+
+            UIQuanLy.Alert("Xoá thành công!!!", AlertForm.enmType.Error);
+
+            HoaDon selectedItem = datPhongGridView.SelectedRows[0].Tag as HoaDon;
             new DatPhongDAO().removeData(selectedItem);
 
-            datPhongLV.Items.Clear();
+            //datPhongGridView.Items.Clear();
             initListView();
         }
 
@@ -107,24 +114,26 @@ namespace DoAn_QuanLyKhachSan.UI
 
             List<HoaDon> resultList = QuanLyDAO<HoaDon>.searchData(selectedItem.ToString(), searchTxt.Text);
 
-            datPhongLV.Items.Clear();
+            datPhongGridView.Rows.Clear();
 
-            initListViewColumn();
-
-            foreach (HoaDon hd in resultList)
+            foreach (HoaDon datPhong in resultList)
             {
-                ListViewItem item = new ListViewItem(new string[] { 
-                    hd.maHD, 
-                    hd.CMND, 
-                    hd.maNV, 
-                    hd.soPhong, 
-                    hd.ngayDat.Value.ToString("dd/MM/yyyy"), 
-                    hd.ngayTra.Value.ToString("dd/MM/yyyy"), 
-                    hd.tienThanhToan.ToString()
-                });
+                int rowIndex = datPhongGridView.Rows.Add();
 
-                item.Tag = hd;
-                datPhongLV.Items.Add(item);
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = datPhongGridView.Rows[rowIndex++];
+
+                row.Cells["maHD"].Value = datPhong.maHD;
+                row.Cells["cmnd"].Value = datPhong.CMND;
+
+                row.Cells["maNV"].Value = datPhong.maNV;
+                row.Cells["soPhong"].Value = datPhong.soPhong;
+
+                row.Cells["ngayDat"].Value = datPhong.ngayDat.Value.ToString("dd/MM/yyyy");
+                row.Cells["ngayTra"].Value = datPhong.ngayTra.Value.ToString("dd/MM/yyyy");
+
+                row.Cells["tienThanhToan"].Value = datPhong.tienThanhToan.ToString();
+                row.Tag = datPhong;
             }
         }
 
@@ -132,6 +141,24 @@ namespace DoAn_QuanLyKhachSan.UI
         {
             EditForm edit = new EditForm();
             edit.showAdd(new HoaDon());
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void datPhongGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+
+            rightClickContextMenu.Show(this, datPhongGridView.PointToClient(Cursor.Position));//places the menu at the pointer position
+        }
+
+        private void datPhongGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) return;
+
+            HoaDon selectedItem = datPhongGridView.SelectedRows[0].Tag as HoaDon;
+
+            EditForm edit = new EditForm();
+            edit.showEdit(selectedItem);
             edit.FormClosed += new FormClosedEventHandler(form_close);
         }
     }

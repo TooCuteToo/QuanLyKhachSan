@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DoAn_QuanLyKhachSan.DAO
 {
@@ -56,9 +58,45 @@ namespace DoAn_QuanLyKhachSan.DAO
         {
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                db.DeferredLoadingEnabled = false;
-                db.GetTable<T>().InsertOnSubmit(t);
-                db.SubmitChanges();
+                try 
+                {
+                    db.DeferredLoadingEnabled = false;
+                    db.GetTable<T>().InsertOnSubmit(t);
+                    db.SubmitChanges();
+                }
+                catch (SqlException sqlex)
+                {
+                    if (sqlex.Message.Contains("Phòng"))
+                    {
+                        MessageBox.Show("Phòng này đã có khách!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("PK__HoaDon__"))
+                    {
+                        MessageBox.Show("Hoá đơn này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("Hoadon_CMND"))
+                    {
+                        MessageBox.Show("Khách hàng không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("Hoadon_maNV"))
+                    {
+                        MessageBox.Show("Nhân viên không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("Ngay"))
+                    {
+                        MessageBox.Show("Ngày trả phải lớn hơn ngày đặt!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                
             }
         }
 

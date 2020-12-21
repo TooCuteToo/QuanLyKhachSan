@@ -14,6 +14,7 @@ namespace DoAn_QuanLyKhachSan
     {
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+        public static string status;
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -23,15 +24,29 @@ namespace DoAn_QuanLyKhachSan
         public Main()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.None;
+
             UIQuanLy.UserControlDragging += new EventHandler(UserControlDragging);
             UIDangNhap.UserControlDragging += new EventHandler(UserControlDragging);
+
+            UIDangNhap.LoginExit += new EventHandler(LoginExit);
         }
 
         private void UserControlDragging(object sender, EventArgs e)
         {
             ReleaseCapture();
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+
+        private void LoginExit(object sender, EventArgs e)
+        {
+            this.Controls.RemoveAt(0);
+            initUIQuanLy();
+        }
+
+        private void initUIQuanLy()
+        {
+            UIQuanLy uiQuanLy = new UIQuanLy(this.Tag.ToString());
+            this.Controls.Add(uiQuanLy);
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -17,30 +17,31 @@ namespace DoAn_QuanLyKhachSan.UI
         public UIPhong()
         {
             InitializeComponent();
-            initListViewColumn();
 
             initListView();
             initCombobox();
-        }
 
-        private void initListViewColumn()
-        {
-            phongLV.Items.Add(new ListViewItem(new string[] { "SỐ PHÒNG", "TÌNH TRẠNG", "MÃ LOẠI" }));
-            //rgba(245, 246, 250,1.0)
-            phongLV.Items[0].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            phongLV.Items[0].Font = new System.Drawing.Font("Century Gothic", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            phongLV.Items[0].ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
         }
 
         private void initListView()
         {
-            phongLV.Items.Clear();
-            initListViewColumn();
+            phongGridView.Rows.Clear();
 
-            foreach (Phong phong in QuanLyDAO<Phong>.getData()) {
-                ListViewItem item = new ListViewItem(new string[] { phong.soPhong, phong.tinhTrang, phong.maLoai });
-                item.Tag = phong;
-                phongLV.Items.Add(item);
+            foreach (Phong phong in QuanLyDAO<Phong>.getData())
+            {
+                int rowIndex = phongGridView.Rows.Add();
+
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = phongGridView.Rows[rowIndex++];
+
+                row.Cells["soPhong"].Value = phong.soPhong;
+                row.Cells["tinhTrang"].Value = phong.tinhTrang;
+                row.Cells["maLoai"].Value = phong.maLoai;
+
+                row.Tag = phong;
             }
         }
 
@@ -61,13 +62,13 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (phongLV.SelectedItems.Count == 0 || phongLV.SelectedItems[0].Tag == null)
+            if (phongGridView.SelectedRows.Count == 0 || phongGridView.SelectedRows[0].Tag == null)
             {
                 MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            Phong selectedItem = phongLV.SelectedItems[0].Tag as Phong;
+            Phong selectedItem = phongGridView.SelectedRows[0].Tag as Phong;
 
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
@@ -81,10 +82,22 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            Phong selectedItem = phongLV.SelectedItems[0].Tag as Phong;
+            if (phongGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xoá!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult isDelete = MessageBox.Show("Bạn có chắc chắn là muốn xoá dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isDelete == DialogResult.No) return;
+
+            UIQuanLy.Alert("Xoá thành công!!!", AlertForm.enmType.Error);
+
+            Phong selectedItem = phongGridView.SelectedRows[0].Tag as Phong;
             new PhongDAO().removeData(selectedItem);
 
-            phongLV.Items.Clear();
+            phongGridView.Rows.Clear();
             initListView();
         }
 
@@ -94,15 +107,20 @@ namespace DoAn_QuanLyKhachSan.UI
 
             List<Phong> resultList = QuanLyDAO<Phong>.searchData(selectedItem.ToString(), searchTxt.Text);
 
-            phongLV.Items.Clear();
-
-            initListViewColumn();
+            phongGridView.Rows.Clear();
 
             foreach (Phong phong in resultList)
             {
-                ListViewItem item = new ListViewItem(new string[] { phong.soPhong, phong.tinhTrang, phong.maLoai });
-                item.Tag = phong;
-                phongLV.Items.Add(item);
+                int rowIndex = phongGridView.Rows.Add();
+
+                //Obtain a reference to the newly created DataGridViewRow 
+                var row = phongGridView.Rows[rowIndex++];
+
+                row.Cells["soPhong"].Value = phong.soPhong;
+                row.Cells["tinhTrang"].Value = phong.tinhTrang;
+                row.Cells["maLoai"].Value = phong.maLoai;
+
+                row.Tag = phong;
             }
         }
 
@@ -111,6 +129,29 @@ namespace DoAn_QuanLyKhachSan.UI
             EditForm edit = new EditForm();
             edit.showAdd(new Phong());
             edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void phongGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+
+            rightClickContextMenu.Show(this, phongGridView.PointToClient(Cursor.Position));//places the menu at the pointer position
+        }
+
+        private void phongGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) return;
+
+            Phong selectedItem = phongGridView.SelectedRows[0].Tag as Phong;
+
+            EditForm edit = new EditForm();
+            edit.showEdit(selectedItem);
+            edit.FormClosed += new FormClosedEventHandler(form_close);
+        }
+
+        private void UIPhong_Enter(object sender, EventArgs e)
+        {
+            initListView();
         }
     }
 }

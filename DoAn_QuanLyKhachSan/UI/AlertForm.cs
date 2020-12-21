@@ -67,6 +67,21 @@ namespace DoAn_QuanLyKhachSan
                     this.pictureBox2.Image = Resources.ok;
                     this.BackColor = Color.SeaGreen;
                     break;
+
+                case enmType.Error:
+                    this.pictureBox2.Image = Resources.ok;
+                    this.BackColor = Color.OrangeRed;
+                    break;
+
+                case enmType.Info:
+                    this.pictureBox2.Image = Resources.ok;
+                    this.BackColor = Color.SeaGreen;
+                    break;
+
+                case enmType.Warning:
+                    this.pictureBox2.Image = Resources.ok;
+                    this.BackColor = Color.SeaGreen;
+                    break;
             }
 
 

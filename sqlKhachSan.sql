@@ -171,3 +171,17 @@ select * from KhachHang
 select * from LoaiPhong
 select * from NhanVien
 select * from Phong
+go
+
+alter trigger tienThanhToan_HoaDon on HoaDon for insert as 
+begin 
+	update HoaDon
+	set tienThanhToan = DATEDIFF(day, inserted.ngayDat, inserted.ngayTra) * (
+		select gia
+		from LoaiPhong lp join Phong p on lp.maLoai = p.maLoai
+		where p.soPhong = inserted.soPhong
+	)
+	from inserted
+
+end
+go

@@ -22,9 +22,10 @@ namespace DoAn_QuanLyKhachSan
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public UIQuanLy()
+        public UIQuanLy(string status)
         {
             InitializeComponent();
+            nameLB.Text = status.ToUpper();
         }
 
         private void nhanVienBtn_Click(object sender, EventArgs e)
@@ -88,6 +89,13 @@ namespace DoAn_QuanLyKhachSan
             else if (btn.Name == "insBtn") targetURL = @"http://instagram.com";
 
             System.Diagnostics.Process.Start(targetURL);
+        }
+
+
+        public static void Alert(string msg, AlertForm.enmType type)
+        {
+            AlertForm frm = new AlertForm();
+            frm.showAlert(msg, type);
         }
         
     }

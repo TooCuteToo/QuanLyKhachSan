@@ -43,6 +43,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
+            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
+            this.uiPhong = new DoAn_QuanLyKhachSan.UI.UIPhong();
+            this.uiDatPhong = new DoAn_QuanLyKhachSan.UI.UIDatPhong();
             this.label1 = new System.Windows.Forms.Label();
             this.thoatBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -50,10 +54,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.twitterBtn = new System.Windows.Forms.Button();
             this.fbBtn = new System.Windows.Forms.Button();
-            this.uiDatPhong = new DoAn_QuanLyKhachSan.UI.UIDatPhong();
-            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
-            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
-            this.uiPhong = new DoAn_QuanLyKhachSan.UI.UIPhong();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -244,15 +244,47 @@
             this.panel3.TabIndex = 2;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
+            // uiNhanVien
+            // 
+            this.uiNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiNhanVien.Location = new System.Drawing.Point(0, 0);
+            this.uiNhanVien.Name = "uiNhanVien";
+            this.uiNhanVien.Size = new System.Drawing.Size(932, 399);
+            this.uiNhanVien.TabIndex = 0;
+            // 
+            // uiKhachHang
+            // 
+            this.uiKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiKhachHang.Location = new System.Drawing.Point(0, 0);
+            this.uiKhachHang.Name = "uiKhachHang";
+            this.uiKhachHang.Size = new System.Drawing.Size(932, 399);
+            this.uiKhachHang.TabIndex = 1;
+            // 
+            // uiPhong
+            // 
+            this.uiPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPhong.Location = new System.Drawing.Point(0, 0);
+            this.uiPhong.Name = "uiPhong";
+            this.uiPhong.Size = new System.Drawing.Size(932, 399);
+            this.uiPhong.TabIndex = 2;
+            // 
+            // uiDatPhong
+            // 
+            this.uiDatPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiDatPhong.Location = new System.Drawing.Point(0, 0);
+            this.uiDatPhong.Name = "uiDatPhong";
+            this.uiDatPhong.Size = new System.Drawing.Size(932, 399);
+            this.uiDatPhong.TabIndex = 3;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label1.Location = new System.Drawing.Point(347, 32);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(347, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 24);
+            this.label1.Size = new System.Drawing.Size(383, 24);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Chương trình quản lý khách sản";
+            this.label1.Text = "CHƯƠNG TRÌNH QUẢN LÝ KHÁCH SẠN";
             // 
             // thoatBtn
             // 
@@ -285,7 +317,7 @@
             this.insBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.insBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.insBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.instagram;
-            this.insBtn.Location = new System.Drawing.Point(754, 24);
+            this.insBtn.Location = new System.Drawing.Point(831, 24);
             this.insBtn.Name = "insBtn";
             this.insBtn.Size = new System.Drawing.Size(28, 34);
             this.insBtn.TabIndex = 0;
@@ -310,7 +342,7 @@
             this.twitterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.twitterBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twitterBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.twitter;
-            this.twitterBtn.Location = new System.Drawing.Point(720, 24);
+            this.twitterBtn.Location = new System.Drawing.Point(788, 24);
             this.twitterBtn.Name = "twitterBtn";
             this.twitterBtn.Size = new System.Drawing.Size(28, 34);
             this.twitterBtn.TabIndex = 0;
@@ -323,44 +355,12 @@
             this.fbBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fbBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fbBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.facebook;
-            this.fbBtn.Location = new System.Drawing.Point(686, 24);
+            this.fbBtn.Location = new System.Drawing.Point(745, 24);
             this.fbBtn.Name = "fbBtn";
             this.fbBtn.Size = new System.Drawing.Size(28, 34);
             this.fbBtn.TabIndex = 0;
             this.fbBtn.UseVisualStyleBackColor = true;
             this.fbBtn.Click += new System.EventHandler(this.social_Click);
-            // 
-            // uiDatPhong
-            // 
-            this.uiDatPhong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiDatPhong.Location = new System.Drawing.Point(0, 0);
-            this.uiDatPhong.Name = "uiDatPhong";
-            this.uiDatPhong.Size = new System.Drawing.Size(932, 399);
-            this.uiDatPhong.TabIndex = 3;
-            // 
-            // uiNhanVien
-            // 
-            this.uiNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiNhanVien.Location = new System.Drawing.Point(0, 0);
-            this.uiNhanVien.Name = "uiNhanVien";
-            this.uiNhanVien.Size = new System.Drawing.Size(932, 399);
-            this.uiNhanVien.TabIndex = 0;
-            // 
-            // uiKhachHang
-            // 
-            this.uiKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiKhachHang.Location = new System.Drawing.Point(0, 0);
-            this.uiKhachHang.Name = "uiKhachHang";
-            this.uiKhachHang.Size = new System.Drawing.Size(932, 399);
-            this.uiKhachHang.TabIndex = 1;
-            // 
-            // uiPhong
-            // 
-            this.uiPhong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPhong.Location = new System.Drawing.Point(0, 0);
-            this.uiPhong.Name = "uiPhong";
-            this.uiPhong.Size = new System.Drawing.Size(932, 399);
-            this.uiPhong.TabIndex = 2;
             // 
             // UIQuanLy
             // 
@@ -416,10 +416,10 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label nameLB;
         private UIKhachHang uiKhachHang;
         private UINhanVien uiNhanVien;
         private UI.UIPhong uiPhong;
         private UI.UIDatPhong uiDatPhong;
+        public System.Windows.Forms.Label nameLB;
     }
 }

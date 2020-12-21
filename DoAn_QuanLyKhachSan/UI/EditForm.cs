@@ -9,28 +9,63 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
 
 namespace DoAn_QuanLyKhachSan.UI
 {
     public partial class EditForm : Form
     {
+        public static bool isError;
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        List<Guna2TextBox> list;
+        List<Guna2DateTimePicker> dateList;
+        List<Guna2ComboBox> cbList;
+
         public EditForm()
         {
             InitializeComponent();
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            EditForm_MouseDown(sender, e);
+        }
+
+        private void EditForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        public void getList()
+        {
+            list = panel1.Controls.OfType<Guna2TextBox>().ToList();
+            dateList = panel1.Controls.OfType<Guna2DateTimePicker>().ToList();
+            cbList = panel1.Controls.OfType<Guna2ComboBox>().ToList();
         }
 
         public void showAdd<T>(T t)
         {
             initTextBox(t);
             Show();
+            getList();
         }
 
         private void initTextBox<T>(T t)
         {
-            int y = 0;
-
             if (t == null) return;
 
+            int y = 0;
             var keys = t.GetType().GetProperties();
 
             foreach (PropertyInfo property in keys)
@@ -38,50 +73,87 @@ namespace DoAn_QuanLyKhachSan.UI
                 Label label = new Label()
                 {
                     Location = new System.Drawing.Point(10, y += 50),
-                    Text = property.Name,
+                    Text = property.Name.ToUpper(),
                 };
 
                 if (property.Name.Contains("ngay"))
                 {
-                    DateTimePicker datePicker = new DateTimePicker()
-                    {
-                        Location = new System.Drawing.Point(200, y),
-                        Tag = property,
-                        CustomFormat = "dd/MM/yyyy",
-                        Format = DateTimePickerFormat.Custom,
-                    };
+                    createDatePicker(property, label, y, DateTime.Now);
+                    continue;
+                }
 
-                    panel1.Controls.Add(label);
-                    panel1.Controls.Add(datePicker);
+                if (property.Name.Contains("gioiTinh"))
+                {
+                    createComboBox(property, label, y, 0);
                     continue;
                 }
 
                 if (!property.Name.EndsWith("s") && !property.ToString().Contains("DoAn"))
                 {
-                    TextBox textBox = new TextBox()
-                    {
-                        Location = new System.Drawing.Point(200, y),
-                        Tag = property,
-                        //Size = new Size(200, 120),
-                    };
-
-                    panel1.Controls.Add(label);
-                    panel1.Controls.Add(textBox);
+                    createTextBox(property, label, y, "");
                 }
             }
 
-            addBtn.Tag = t;
+            editBtn.Tag = t;
+        }
+
+        private void createDatePicker(PropertyInfo property, Label label, int y, DateTime value)
+        {
+            Guna2DateTimePicker datePicker = new Guna2DateTimePicker()
+            {
+                Value = value,
+                Location = new System.Drawing.Point(200, y),
+                Tag = property,
+                CustomFormat = "dd/MM/yyyy",
+                Format = DateTimePickerFormat.Custom,
+                FillColor = Color.LightBlue,
+            };
+
+            panel1.Controls.Add(label);
+            panel1.Controls.Add(datePicker);
+        }
+
+        private void createComboBox(PropertyInfo property, Label label, int y, int selectedIndex)
+        {
+            Guna2ComboBox combo = new Guna2ComboBox()
+            {
+                Location = new System.Drawing.Point(200, y),
+                Tag = property,
+            };
+
+            combo.Items.Add("Nam");
+            combo.Items.Add("Nữ");
+            combo.SelectedIndex = selectedIndex;
+
+            panel1.Controls.Add(label);
+            panel1.Controls.Add(combo);
+        }
+
+        private void createTextBox(PropertyInfo property, Label label, int y, string value)
+        {
+
+            Guna2TextBox textBox = new Guna2TextBox()
+            {
+                Text = value,
+                Location = new System.Drawing.Point(200, y),
+                Tag = property,
+                //Size = new Size(200, 120),
+                Enabled = property.Name.Contains("tien") || property.Name.Contains("ma") && value != "" ? false : true,
+            };
+
+            panel1.Controls.Add(label);
+            panel1.Controls.Add(textBox);
         }
 
         public void showEdit<T>(T t)
         {
             initTextBoxValue(t);
             Show();
+            getList();
         }
 
         private void initTextBoxValue<T>(T t)
         {
-            int x = 0;
             int y = 0;
 
             if (t == null) return;
@@ -93,7 +165,7 @@ namespace DoAn_QuanLyKhachSan.UI
                 Label label = new Label()
                 {
                     Location = new System.Drawing.Point(10, y += 50),
-                    Text = property.Name,
+                    Text = property.Name.ToUpper(),
                 };
 
                 var value = property.GetValue(t);
@@ -102,31 +174,21 @@ namespace DoAn_QuanLyKhachSan.UI
                 {
                     if (property.Name.Contains("ngay"))
                     {
-                        DateTimePicker datePicker = new DateTimePicker()
-                        {
-                            Value = DateTime.Parse(value.ToString()),
-                            Location = new System.Drawing.Point(200, y),
-                            Tag = property,
-                            CustomFormat = "dd/MM/yyyy",
-                            Format = DateTimePickerFormat.Custom,
-                        };
-
-                        panel1.Controls.Add(label);
-                        panel1.Controls.Add(datePicker);
+                        createDatePicker(property, label, y, DateTime.Parse(value.ToString()));
                         continue;
                     }
 
-                    TextBox textBox = new TextBox()
+                    if (property.Name.Contains("gioiTinh"))
                     {
-                        Text = value.ToString(),
-                        Location = new System.Drawing.Point(200, y),
-                        Tag = property,
-                        Enabled = !property.Name.Contains("ma"),
-                        Size = new Size(200, 120),
-                    };
+                        int selectedIndex = value.ToString().Contains("Nam") ? 0 : 1;
+                        createComboBox(property, label, y, selectedIndex);
+                        continue;
+                    }
 
-                    panel1.Controls.Add(label);
-                    panel1.Controls.Add(textBox);
+                    if (!property.Name.EndsWith("s") && !property.ToString().Contains("DoAn"))
+                    {
+                        createTextBox(property, label, y, value.ToString());
+                    }
                 }
             }
 
@@ -135,43 +197,36 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            List<TextBox> list = panel1.Controls.OfType<TextBox>().ToList();
-            List<DateTimePicker> dateList = panel1.Controls.OfType<DateTimePicker>().ToList();
+            DialogResult isEdit = MessageBox.Show("Bạn có chắc chắn là muốn thay đổi dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isEdit == DialogResult.No) return;
 
             if (editBtn.Tag.GetType() == typeof(KhachHang))
             {
                 KhachHang kh = new KhachHang();
-                getData<KhachHang>(kh, list);
+                getData<KhachHang>(kh, list, dateList, cbList);
                 new KhachHangDAO().updateData(kh);
-
-                return;
             }
 
-            if (editBtn.Tag.GetType() == typeof(NhanVien))
+            else if (editBtn.Tag.GetType() == typeof(NhanVien))
             {
                 NhanVien nv = new NhanVien();
-                getData<NhanVien>(nv, list, dateList);
+                getData<NhanVien>(nv, list, dateList, cbList);
                 new NhanVienDAO().updateData(nv);
-
-                return;
             }
 
-            if (editBtn.Tag.GetType() == typeof(HoaDon))
+            else if (editBtn.Tag.GetType() == typeof(HoaDon))
             {
                 HoaDon hd = new HoaDon();
-                getData<HoaDon>(hd, list, dateList);
+                getData<HoaDon>(hd, list, dateList, cbList);
                 new DatPhongDAO().updateData(hd);
-
-                return;
             }
 
-            if (editBtn.Tag.GetType() == typeof(Phong))
+            else if (editBtn.Tag.GetType() == typeof(Phong))
             {
                 Phong phong = new Phong();
-                getData<Phong>(phong, list);
+                getData<Phong>(phong, list, dateList, cbList);
                 new PhongDAO().updateData(phong);
-
-                return;
             }
         }
 
@@ -249,71 +304,92 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            List<TextBox> list = panel1.Controls.OfType<TextBox>().ToList();
-            List<DateTimePicker> dateList = panel1.Controls.OfType<DateTimePicker>().ToList();
+            DialogResult isEdit = MessageBox.Show("Bạn có chắc chắn là muốn thay đổi dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (addBtn.Tag.GetType() == typeof(KhachHang))
+            if (isEdit == DialogResult.No) return;
+
+            if (editBtn.Tag.GetType() == typeof(KhachHang))
             {
                 KhachHang kh = new KhachHang();
-                getData<KhachHang>(kh, list);
+                getData<KhachHang>(kh, list, dateList, cbList);
                 QuanLyDAO<KhachHang>.addData(kh);
 
                 return;
             }
 
-            if (addBtn.Tag.GetType() == typeof(NhanVien))
+            if (editBtn.Tag.GetType() == typeof(NhanVien))
             {
                 NhanVien nv = new NhanVien();
-                getData<NhanVien>(nv, list, dateList);
+                getData<NhanVien>(nv, list, dateList, cbList);
                 QuanLyDAO<NhanVien>.addData(nv);
 
                 return;
             }
 
-            if (addBtn.Tag.GetType() == typeof(HoaDon))
+            if (editBtn.Tag.GetType() == typeof(HoaDon))
             {
                 HoaDon hd = new HoaDon();
-                getData<HoaDon>(hd, list);
+                getData<HoaDon>(hd, list, dateList, cbList);
                 QuanLyDAO<HoaDon>.addData(hd);
 
                 return;
             }
 
-            if (addBtn.Tag.GetType() == typeof(Phong))
+            if (editBtn.Tag.GetType() == typeof(Phong))
             {
                 Phong phong = new Phong();
-                getData<Phong>(phong, list);
+                getData<Phong>(phong, list, dateList, cbList);
                 QuanLyDAO<Phong>.addData(phong);
 
                 return;
             }
         }
 
-        private object getData<T>(T t, List<TextBox> list, List<DateTimePicker> dateList = null)
+        private object getData<T>(T t, List<Guna2TextBox> list, List<Guna2DateTimePicker> dateList, List<Guna2ComboBox> cbList)
         {
-            foreach (TextBox text in list)
+            foreach (Guna2TextBox text in list)
             {
                 PropertyInfo property = text.Tag as PropertyInfo;
 
-                if (property.Name == "tienThanhToan")
-                {
-                    typeof(HoaDon).GetProperty(property.Name).SetValue(t, decimal.Parse(text.Text));
-                    continue;
-                }
+                //if (property.Name.Contains("tien"))
+                //{
+                //    typeof(HoaDon).GetProperty(property.Name).SetValue(t, decimal.Parse(text.Text));
+                //    continue;
+                //}
+
+                if (text.Text == "") continue;
+                if (property.Name.Contains("tien")) continue;
 
                 typeof(T).GetProperty(property.Name).SetValue(t, text.Text);
             }
 
-            if (dateList != null)
+            if (dateList.Count > 0)
             {
-                foreach (DateTimePicker datePicker in dateList)
+                foreach (Guna2DateTimePicker datePicker in dateList)
                 {
                     PropertyInfo property = datePicker.Tag as PropertyInfo;
                     typeof(T).GetProperty(property.Name).SetValue(t, datePicker.Value);
                 }
             }
 
+            if (cbList.Count > 0)
+            {
+                foreach (Guna2ComboBox combo in cbList)
+                {
+                    PropertyInfo property = combo.Tag as PropertyInfo;
+                    typeof(T).GetProperty(property.Name).SetValue(t, combo.SelectedItem);
+                }
+            }
+
             return t;
         }
+
+        private void thoatBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult isEdit = MessageBox.Show("Bạn có chắn chắn về những thay đổi này không ?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (isEdit == DialogResult.Yes) this.Close();
+        }
+
     }
 }

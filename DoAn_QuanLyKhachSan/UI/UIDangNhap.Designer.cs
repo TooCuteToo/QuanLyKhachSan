@@ -66,18 +66,11 @@
             // 
             // pictureBox2
             // 
-<<<<<<< HEAD
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.logo_1_;
             this.pictureBox2.Location = new System.Drawing.Point(181, 124);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(206, 59);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-=======
-            this.pictureBox2.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(181, 124);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(206, 59);
->>>>>>> 9136efc043b97cf0280b54b13819b7332e1a4dbd
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 

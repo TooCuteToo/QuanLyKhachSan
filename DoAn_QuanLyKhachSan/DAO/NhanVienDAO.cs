@@ -13,9 +13,16 @@ namespace DoAn_QuanLyKhachSan.DAO
         {
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                NhanVien removedItem = db.NhanViens.Where(elem => elem.maNV == nv.maNV).FirstOrDefault();
-                db.NhanViens.DeleteOnSubmit(removedItem);
-                db.SubmitChanges();
+                try
+                {
+                    NhanVien removedItem = db.NhanViens.Where(elem => elem.maNV == nv.maNV).FirstOrDefault();
+                    db.NhanViens.DeleteOnSubmit(removedItem);
+                    db.SubmitChanges();
+                }
+                catch
+                {
+                    Console.WriteLine("Không thể xoá dòng dữ liệu này");
+                }
             }
         }
 

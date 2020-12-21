@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.uiDangNhap1 = new DoAn_QuanLyKhachSan.UIDangNhap();
-            this.uiQuanLy = new DoAn_QuanLyKhachSan.UIQuanLy();
             this.SuspendLayout();
+            // 
+            // guna2BorderlessForm1
+            // 
+            this.guna2BorderlessForm1.ContainerControl = this;
             // 
             // uiDangNhap1
             // 
@@ -42,24 +47,14 @@
             this.uiDangNhap1.TabIndex = 0;
             this.uiDangNhap1.Load += new System.EventHandler(this.uiDangNhap1_Load);
             // 
-            // uiQuanLy
-            // 
-            this.uiQuanLy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(224)))), ((int)(((byte)(223)))));
-            this.uiQuanLy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiQuanLy.Location = new System.Drawing.Point(0, 0);
-            this.uiQuanLy.Name = "uiQuanLy";
-            this.uiQuanLy.Size = new System.Drawing.Size(1116, 541);
-            this.uiQuanLy.TabIndex = 0;
-            // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1116, 541);
             this.Controls.Add(this.uiDangNhap1);
-            this.Controls.Add(this.uiQuanLy);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -69,8 +64,8 @@
 
         #endregion
 
-        private UIQuanLy uiQuanLy;
         private UIDangNhap uiDangNhap1;
+        private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
 
         //private UIDangNhap uiDangNhap1;
     }

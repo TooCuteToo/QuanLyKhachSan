@@ -184,6 +184,7 @@
     </Compile>
     <EmbeddedResource Include="UI\UIDangNhap.resx">
       <DependentUpon>UIDangNhap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UIQuanLy.resx">
       <DependentUpon>UIQuanLy.cs</DependentUpon>
@@ -252,6 +253,7 @@
     <None Include="Resources\edit_32px.png" />
     <None Include="Resources\remove_new_32px.png" />
     <None Include="Resources\logo.png" />
+    <None Include="Resources\logo%281%29.png" />
     <Content Include="Resources\user_login_icon.png" />
   </ItemGroup>
   <ItemGroup>
