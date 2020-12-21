@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using DoAn_QuanLyKhachSan.UI;
 
 namespace DoAn_QuanLyKhachSan
 {
@@ -52,9 +54,25 @@ namespace DoAn_QuanLyKhachSan
 
                 if (nv != null)
                 {
+                    // Luu lai tai khoan da dang nhap khi tick Remember Me
+                    if (ckRemember.Checked == true)
+                    {
+                        ​String filepath = "..//..//..//user//remember.txt";
+                        ​FileStream fs = new FileStream(filepath, FileMode.Create);        
+                        ​StreamWriter sWriter = new StreamWriter(fs, Encoding.UTF8);
+                        ​sWriter.WriteLine(user);
+                        ​sWriter.WriteLine(pass);
+                        ​sWriter.Flush();
+                        fs.Close();
+                    }
+
                     this.ParentForm.Tag = nv.tenNV;
                     this.Alert("XIN CHÀO " + nv.tenNV.ToUpper(), AlertForm.enmType.Success);
                     LoginExit(null, EventArgs.Empty);
+                }
+                else
+                {
+                    label1.Text = "Tài khoản hoặc mật khẩu bạn nhập không đúng";
                 }
             }
         }
@@ -77,6 +95,26 @@ namespace DoAn_QuanLyKhachSan
             {
                 btnLogin.PerformClick();
             }
+        }
+
+        private void UIDangNhap_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines("..//..//..//user//remember.txt");
+                txtUser.Text = lines[0];
+                txtPass.Text = lines[1];
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            ForgotPassForm fgPass = new ForgotPassForm();
+            fgPass.Show();
         }
     }
 }

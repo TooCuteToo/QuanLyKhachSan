@@ -153,16 +153,34 @@ INSERT INTO Phong values
 go
 
 INSERT INTO HoaDon values
-('HD01','031100004776','NV001','101','10/10/2020','13/10/2020','700000'),
-('HD02','001000118903','NV002','103','10/10/2020','14/10/2020','700000'),
-('HD03','030861008133','NV003','205','10/10/2020','15/10/2020','1000000'),
-('HD04','072098980989','NV004','202','10/10/2020','20/10/2020','1050000'),
-('HD05','031300001766','NV005','304','10/10/2020','21/10/2020','1250000'),
-('HD06','056078907811','NV006','301','10/10/2020','22/10/2020','1300000'),
-('HD07','072098980989','NV007','403','10/10/2020','23/10/2020','1500000'),
-('HD08','001071000030','NV008','402','10/10/2020','7/11/2020','1600000'),
-('HD09','001000118903','NV009','102','10/10/2020','15/11/2020','1800000'),
-('HD10','079098700789','NV010','303','10/10/2020','20/11/2020','2100000')
+('HD01','031100004776','NV001','101','10/10/2020','13/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD02','001000118903','NV002','103','10/10/2020','14/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD03','030861008133','NV003','205','10/10/2020','15/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD04','072098980989','NV004','202','10/10/2020','20/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD05','031300001766','NV005','304','10/10/2020','21/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD06','056078907811','NV006','301','10/10/2020','22/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD07','072098980989','NV007','403','10/10/2020','23/10/2020', null)
+
+INSERT INTO HoaDon values
+('HD08','001071000030','NV008','402','10/10/2020','7/11/2020', null)
+
+INSERT INTO HoaDon values
+('HD09','001000118903','NV009','102','10/10/2020','15/11/2020', null)
+
+INSERT INTO HoaDon values
+('HD10','079098700789','NV010','303','10/10/2020','20/11/2020', null)
 Go
 
 select * from ChucVu
@@ -173,8 +191,42 @@ select * from NhanVien
 select * from Phong
 go
 
-alter trigger tienThanhToan_HoaDon on HoaDon for insert as 
-begin 
+
+go
+create trigger tri_NgayDatNgayTra_HoaDon on HoaDon for insert, delete, update as 
+begin
+	declare @Date_From DATE, @Date_To DATE
+
+	if EXISTS(select * from inserted) and EXISTS(select * from deleted)
+	begin
+		set @Date_From=(SELECT ngayDat FROM inserted)
+		set @Date_To=(SELECT ngayTra FROM inserted)
+
+		if (Datediff(day, @Date_From, @Date_To) <= 0) 
+		begin
+			print 'Ngay tra phai lon hon ngay dat'
+			rollback tran
+		end
+	end
+
+	else if EXISTS(select * from inserted) 
+	begin
+		set @Date_From=(SELECT ngayDat FROM inserted)
+		set @Date_To=(SELECT ngayTra FROM inserted)
+
+		if (Datediff(day, @Date_From, @Date_To) <= 0) 
+		begin
+			print 'Ngay tra phai lon hon ngay dat'
+			rollback tran
+		end
+	end
+end
+go
+
+go
+create trigger tienThanhToan_HoaDon on HoaDon 
+for insert, update as 
+begin
 	update HoaDon
 	set tienThanhToan = DATEDIFF(day, inserted.ngayDat, inserted.ngayTra) * (
 		select gia
@@ -182,6 +234,159 @@ begin
 		where p.soPhong = inserted.soPhong
 	)
 	from inserted
-
+	where inserted.maHD = HoaDon.maHD
 end
 go
+
+
+go
+create trigger tri_Phong_HoaDon on HoaDon 
+for insert, delete, update as 
+begin
+	if EXISTS(select * from inserted) and EXISTS(select * from deleted)
+	begin
+		if not exists(
+			select * 
+			from inserted ins join deleted del
+			on ins.soPhong = del.soPhong
+		) 
+		begin
+			update Phong
+			set TinhTrang = N'Có'
+			where phong.soPhong = (
+				select sophong
+				from inserted
+			)
+
+			update Phong
+			set TinhTrang = N'Trống'
+			where phong.soPhong = (
+				select soPhong
+				from deleted
+			)
+		end
+	end
+
+	else if EXISTS(select * from inserted) 
+	begin
+		update Phong
+		set TinhTrang = N'Có'
+		where phong.soPhong = (
+			select soPhong
+			from inserted
+		)
+	end
+
+	else if EXISTS(select * from deleted) 
+	begin
+		update Phong
+		set TinhTrang = N'Trống'
+		where phong.soPhong = (
+			select soPhong
+			from deleted
+		)
+	end
+end
+
+go
+create trigger tri_Phong_HoaDon_Trung on HoaDon
+instead of insert, update as
+begin
+		
+	if exists (select * from inserted) and exists (select * from deleted)
+	begin
+		--select * from (
+		--	select * from inserted
+		--	except
+		--	select * from HoaDon
+		--) as temp
+
+		--if (
+		--	select count(*)
+		--	from (
+		--		select * from inserted
+		--		union
+		--		select * from HoaDon
+		--	) as temp
+		--	where temp.soPhong = (
+		--		select soPhong
+		--		from inserted
+		--	)
+		--) > 1
+		--begin
+		--	print 'Phòng này đã có khách'
+		--	rollback tran
+		--end
+
+		if update (soPhong)
+		begin
+			if (
+				select count(*)
+				from (
+					select * from inserted
+					union
+					select * from HoaDon
+				) as temp
+				where temp.soPhong = (
+					select soPhong
+					from inserted
+				)
+			) > 1
+			begin
+				print 'Phòng này đã có khách'
+				rollback tran
+			end
+		end
+
+		else 
+		begin
+			delete from HoaDon
+			where maHD = (
+				select maHD
+				from deleted
+			)
+
+			insert into HoaDon
+			select *
+			from inserted
+		end
+	end
+
+	else 
+	begin
+		if exists (
+			select *
+			from inserted ins join HoaDon hd
+			on ins.soPhong = hd.soPhong
+		) 
+		begin
+			print 'Phòng này đã có khách'
+			rollback tran
+		end
+
+		else 
+		begin
+			insert into HoaDon
+			select * 
+			from inserted
+		end
+	end
+end
+go
+
+update hoadon
+set soPhong = '205'
+where maHD = 'HD03'
+
+update hoadon
+set soPhong = '205'
+where maHD = 'HD02'
+
+update hoadon
+set ngayTra = '2020-10-18'
+where maHD = 'HD02'
+
+select * from HoaDon
+
+INSERT INTO HoaDon values
+('HD13','079098700789','NV010','101','10/10/2020','20/11/2020', null)

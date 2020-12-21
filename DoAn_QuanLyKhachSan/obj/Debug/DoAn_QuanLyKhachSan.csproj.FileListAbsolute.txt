@@ -14,27 +14,6 @@ D:\Hoc tap\CN .NET\DoAn\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\Guna.U
 D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
 D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
 D:\Hoc Tap\.NET\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Design.dll
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dll
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.AlertForm.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.EditForm.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Main.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIDatPhong.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIKhachHang.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIPhong.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.WarningForm.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Properties.Resources.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIDangNhap.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
-D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
@@ -56,3 +35,25 @@ E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachS
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Design.dll
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dll
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.AlertForm.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.EditForm.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Main.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIDatPhong.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIKhachHang.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIPhong.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.WarningForm.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Properties.Resources.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIDangNhap.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
+D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.ForgotPassForm.resources

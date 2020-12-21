@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.thoatBtn = new System.Windows.Forms.Button();
             this.editBtn = new Guna.UI2.WinForms.Guna2Button();
             this.addBtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
-            this.thoatBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,19 @@
             this.panel1.Size = new System.Drawing.Size(860, 500);
             this.panel1.TabIndex = 0;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            // 
+            // thoatBtn
+            // 
+            this.thoatBtn.FlatAppearance.BorderSize = 0;
+            this.thoatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.thoatBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoatBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.power_1_;
+            this.thoatBtn.Location = new System.Drawing.Point(820, 24);
+            this.thoatBtn.Name = "thoatBtn";
+            this.thoatBtn.Size = new System.Drawing.Size(28, 34);
+            this.thoatBtn.TabIndex = 4;
+            this.thoatBtn.UseVisualStyleBackColor = true;
+            this.thoatBtn.Click += new System.EventHandler(this.thoatBtn_Click);
             // 
             // editBtn
             // 
@@ -92,19 +105,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(860, 18);
             this.panel2.TabIndex = 2;
-            // 
-            // thoatBtn
-            // 
-            this.thoatBtn.FlatAppearance.BorderSize = 0;
-            this.thoatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.thoatBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thoatBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.power_1_;
-            this.thoatBtn.Location = new System.Drawing.Point(820, 24);
-            this.thoatBtn.Name = "thoatBtn";
-            this.thoatBtn.Size = new System.Drawing.Size(28, 34);
-            this.thoatBtn.TabIndex = 4;
-            this.thoatBtn.UseVisualStyleBackColor = true;
-            this.thoatBtn.Click += new System.EventHandler(this.thoatBtn_Click);
             // 
             // EditForm
             // 
