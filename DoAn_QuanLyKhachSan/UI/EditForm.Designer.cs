@@ -35,12 +35,10 @@
             this.addBtn = new Guna.UI2.WinForms.Guna2Button();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
-<<<<<<< HEAD
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.formGroupBox = new Guna.UI2.WinForms.Guna2GroupBox();
-=======
->>>>>>> b9b836be580b16d2fc85dbece1b772579c1511c3
+
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.guna2GroupBox1.SuspendLayout();
@@ -64,11 +62,11 @@
             this.thoatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.thoatBtn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoatBtn.Image = global::DoAn_QuanLyKhachSan.Properties.Resources.power_1_;
-<<<<<<< HEAD
+
             this.thoatBtn.Location = new System.Drawing.Point(810, 24);
-=======
+
             this.thoatBtn.Location = new System.Drawing.Point(820, 24);
->>>>>>> b9b836be580b16d2fc85dbece1b772579c1511c3
+
             this.thoatBtn.Name = "thoatBtn";
             this.thoatBtn.Size = new System.Drawing.Size(28, 34);
             this.thoatBtn.TabIndex = 4;
@@ -117,7 +115,7 @@
             this.panel2.Size = new System.Drawing.Size(860, 18);
             this.panel2.TabIndex = 2;
             // 
-<<<<<<< HEAD
+
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
@@ -147,8 +145,6 @@
             this.formGroupBox.Text = "THÔNG TIN";
             this.formGroupBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-=======
->>>>>>> b9b836be580b16d2fc85dbece1b772579c1511c3
             // EditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
