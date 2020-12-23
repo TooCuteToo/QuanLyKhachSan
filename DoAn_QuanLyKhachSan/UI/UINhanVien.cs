@@ -55,14 +55,11 @@ namespace DoAn_QuanLyKhachSan
 
         private void initCombobox()
         {
-            var list = QuanLyDAO<NhanVien>.getTableColumNames();
+            List<string> list = QuanLyDAO<NhanVien>.getTableColumNames();
 
             foreach (var item in list)
             {
-                string name = item.ToString();
-                int startIndex = name.IndexOf(' ');
-                string property = name.Substring(startIndex).Trim();
-                thuocTinhCB.Items.Add(property);
+                thuocTinhCB.Items.Add(item);
             }
 
             thuocTinhCB.SelectedIndex = 0;

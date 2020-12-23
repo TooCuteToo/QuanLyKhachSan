@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,15 +28,12 @@ namespace DoAn_QuanLyKhachSan.DAO
                 var columns = typeof(T).GetProperties();
                 List<string> columnNames = new List<string>();
 
-                foreach (var column in columns)
+                foreach (PropertyInfo column in columns)
                 {
-                    string propertyInfo = column.ToString();
-
-                    if (!propertyInfo.EndsWith("s"))
+                    if (!column.Name.EndsWith("s") && !Char.IsUpper(column.Name[0]) || column.Name.Contains("CMND") || column.Name.Contains("SDT"))
                     {
-                        columnNames.Add(propertyInfo);
+                        columnNames.Add(column.Name);
                     }
-                    
                 }
 
                 return columnNames;
@@ -58,11 +56,13 @@ namespace DoAn_QuanLyKhachSan.DAO
         {
             using (DataClasses1DataContext db = new DataClasses1DataContext())
             {
-                try 
+                try
                 {
                     db.DeferredLoadingEnabled = false;
                     db.GetTable<T>().InsertOnSubmit(t);
                     db.SubmitChanges();
+
+                    UIQuanLy.Alert("Thêm dữ liệu thành công!!!", AlertForm.enmType.Info);
                 }
                 catch (SqlException sqlex)
                 {
@@ -95,8 +95,25 @@ namespace DoAn_QuanLyKhachSan.DAO
                         MessageBox.Show("Ngày trả phải lớn hơn ngày đặt!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    if (sqlex.Message.Contains("PK__KhachHan__"))
+                    {
+                        MessageBox.Show("Khách hàng này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("PK__NhanVien__"))
+                    {
+                        MessageBox.Show("Nhân viên này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (sqlex.Message.Contains("PK__Phong__"))
+                    {
+                        MessageBox.Show("Phòng này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                
             }
         }
 

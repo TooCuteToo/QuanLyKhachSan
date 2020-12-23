@@ -43,6 +43,8 @@ namespace DoAn_QuanLyKhachSan.DAO
                 selectedItem.ngayVaoLam = nv.ngayVaoLam;
 
                 db.SubmitChanges();
+
+                UIQuanLy.Alert("Thay đổi thành công!!!", AlertForm.enmType.Info);
             }
         }
     }

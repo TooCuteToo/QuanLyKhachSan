@@ -52,13 +52,11 @@ namespace DoAn_QuanLyKhachSan
 
         private void initCombobox()
         {
-            var list = QuanLyDAO<KhachHang>.getTableColumNames();
+            List<string> list = QuanLyDAO<KhachHang>.getTableColumNames();
 
             foreach (var item in list) 
             {
-                int startIndex = item.IndexOf(' ');
-                string property = item.Substring(startIndex).Trim();
-                thuocTinhCB.Items.Add(property);
+                thuocTinhCB.Items.Add(item);
             }
 
             thuocTinhCB.SelectedIndex = 0;

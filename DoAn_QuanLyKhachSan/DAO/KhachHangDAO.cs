@@ -35,6 +35,8 @@ namespace DoAn_QuanLyKhachSan.DAO
                 selectedItem.SDT = kh.SDT;
 
                 db.SubmitChanges();
+
+                UIQuanLy.Alert("Thay đổi thành công!!!", AlertForm.enmType.Info);
             }
         }
     }

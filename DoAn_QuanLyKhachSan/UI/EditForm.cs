@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
+using System.Text.RegularExpressions;
 
 namespace DoAn_QuanLyKhachSan.UI
 {
@@ -28,9 +29,36 @@ namespace DoAn_QuanLyKhachSan.UI
         List<Guna2DateTimePicker> dateList;
         List<Guna2ComboBox> cbList;
 
+        private string[] gioiTinh;
+        private string[] queQuan;
+
         public EditForm()
         {
             InitializeComponent();
+            gioiTinh = new string[] { "Nam", "Nữ" };
+            queQuan = new string[] { 
+                "Hồ Chí Minh", 
+                "Hà Nội", 
+                "Hải Phòng", 
+                "Phú Yên", 
+                "Vĩnh Phúc", 
+                "Bắc Ninh", 
+                "Hải Dương", 
+                "Tây Ninh", 
+                "Khánh Hoà", 
+                "Đà Nẵng", 
+                "Phú Yên", 
+                "Thanh Hoá",
+                "Hà Nam",
+                "Nghệ An",
+                "Hà Tĩnh",
+                "Kiên Giang",
+                "Cà Mau",
+                "Cần Thơ",
+                "Huế",
+                "Trà Vinh",
+            
+            };
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -49,14 +77,16 @@ namespace DoAn_QuanLyKhachSan.UI
 
         public void getList()
         {
-            list = panel1.Controls.OfType<Guna2TextBox>().ToList();
-            dateList = panel1.Controls.OfType<Guna2DateTimePicker>().ToList();
-            cbList = panel1.Controls.OfType<Guna2ComboBox>().ToList();
+            list = formGroupBox.Controls.OfType<Guna2TextBox>().ToList();
+            dateList = formGroupBox.Controls.OfType<Guna2DateTimePicker>().ToList();
+            cbList = formGroupBox.Controls.OfType<Guna2ComboBox>().ToList();
         }
 
         public void showAdd<T>(T t)
         {
             initTextBox(t);
+            editBtn.Enabled = false;
+
             Show();
             getList();
         }
@@ -72,7 +102,7 @@ namespace DoAn_QuanLyKhachSan.UI
             {
                 Label label = new Label()
                 {
-                    Location = new System.Drawing.Point(10, y += 50),
+                    Location = new System.Drawing.Point(20, y += 70),
                     Text = property.Name.ToUpper(),
                 };
 
@@ -82,7 +112,7 @@ namespace DoAn_QuanLyKhachSan.UI
                     continue;
                 }
 
-                if (property.Name.Contains("gioiTinh"))
+                if (property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi"))
                 {
                     createComboBox(property, label, y, 0);
                     continue;
@@ -102,52 +132,93 @@ namespace DoAn_QuanLyKhachSan.UI
             Guna2DateTimePicker datePicker = new Guna2DateTimePicker()
             {
                 Value = value,
-                Location = new System.Drawing.Point(200, y),
+                Location = new System.Drawing.Point(150, y),
                 Tag = property,
                 CustomFormat = "dd/MM/yyyy",
                 Format = DateTimePickerFormat.Custom,
                 FillColor = Color.LightBlue,
             };
 
-            panel1.Controls.Add(label);
-            panel1.Controls.Add(datePicker);
+            formGroupBox.Controls.Add(label);
+            formGroupBox.Controls.Add(datePicker);
         }
 
         private void createComboBox(PropertyInfo property, Label label, int y, int selectedIndex)
         {
             Guna2ComboBox combo = new Guna2ComboBox()
             {
-                Location = new System.Drawing.Point(200, y),
+                Location = new System.Drawing.Point(150, y),
                 Tag = property,
             };
 
-            combo.Items.Add("Nam");
-            combo.Items.Add("Nữ");
+            if (property.Name.Contains("gioiTinh"))
+            {
+                combo.Items.AddRange(gioiTinh);
+
+            } else if (property.Name.Contains("diaChi")) {
+                combo.Items.AddRange(queQuan);
+            }
+
             combo.SelectedIndex = selectedIndex;
 
-            panel1.Controls.Add(label);
-            panel1.Controls.Add(combo);
+            formGroupBox.Controls.Add(label);
+            formGroupBox.Controls.Add(combo);
         }
 
         private void createTextBox(PropertyInfo property, Label label, int y, string value)
         {
-
             Guna2TextBox textBox = new Guna2TextBox()
             {
                 Text = value,
-                Location = new System.Drawing.Point(200, y),
+                Location = new System.Drawing.Point(150, y),
                 Tag = property,
                 //Size = new Size(200, 120),
                 Enabled = property.Name.Contains("tien") || property.Name.Contains("ma") && value != "" ? false : true,
             };
 
-            panel1.Controls.Add(label);
-            panel1.Controls.Add(textBox);
+            if (property.Name.Contains("CMND") || property.Name.Contains("SDT"))
+            {
+                textBox.TextChanged += new EventHandler(checkTextBox);
+            }
+
+            formGroupBox.Controls.Add(label);
+            formGroupBox.Controls.Add(textBox);
+        }
+
+        private void checkTextBox(object sender, EventArgs e)
+        {
+            Guna2TextBox txt = sender as Guna2TextBox;
+            PropertyInfo property = txt.Tag as PropertyInfo;
+
+            if (property.Name.Contains("CMND"))
+            {
+                if (!Regex.IsMatch(txt.Text, @"[0-9]{12}") || txt.Text.Length > 12)
+                {
+                    errorProvider.SetError(txt, "CMND không hợp lệ!!!");
+                }
+                else
+                {
+                    errorProvider.SetError(txt, null);
+                }
+            }
+            else if (property.Name.Contains("SDT"))
+            {
+                if (!Regex.IsMatch(txt.Text, @"0\d{9,10}") || txt.Text.Length > 11)
+                {
+                    errorProvider.SetError(txt, "Số điện thoại không hợp lệ!!!");
+                }
+                else
+                {
+                    errorProvider.SetError(txt, null);
+                }
+            }
         }
 
         public void showEdit<T>(T t)
         {
             initTextBoxValue(t);
+            addBtn.Enabled = false;
+
             Show();
             getList();
         }
@@ -164,7 +235,7 @@ namespace DoAn_QuanLyKhachSan.UI
             {
                 Label label = new Label()
                 {
-                    Location = new System.Drawing.Point(10, y += 50),
+                    Location = new System.Drawing.Point(20, y += 70),
                     Text = property.Name.ToUpper(),
                 };
 
@@ -178,10 +249,19 @@ namespace DoAn_QuanLyKhachSan.UI
                         continue;
                     }
 
-                    if (property.Name.Contains("gioiTinh"))
+                    if (property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi"))
                     {
-                        int selectedIndex = value.ToString().Contains("Nam") ? 0 : 1;
+                        int selectedIndex;
+                        
+                        if (gioiTinh.Contains(value.ToString())) {
+                            selectedIndex = Array.IndexOf(gioiTinh, value.ToString());
+
+                        } else {
+                            selectedIndex = Array.IndexOf(queQuan, value.ToString());
+                        }
+
                         createComboBox(property, label, y, selectedIndex);
+
                         continue;
                     }
 

@@ -24,6 +24,8 @@ namespace DoAn_QuanLyKhachSan.DAO
 
                 db.Phongs.InsertOnSubmit(phong);
                 db.SubmitChanges();
+
+                UIQuanLy.Alert("Thay đổi thành công!!!", AlertForm.enmType.Info);
             }
         }
     }
