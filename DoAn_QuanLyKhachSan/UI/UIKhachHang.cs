@@ -15,9 +15,11 @@ namespace DoAn_QuanLyKhachSan
 {
     public partial class UIKhachHang : UserControl
     {
-        public UIKhachHang()
+        public UIKhachHang(object val)
         {
             InitializeComponent();
+
+            this.Tag = val;
 
             initListView();
             initCombobox();
@@ -31,7 +33,7 @@ namespace DoAn_QuanLyKhachSan
         {
             khachHangGridView.Rows.Clear();
 
-            foreach (KhachHang kh in QuanLyDAO<KhachHang>.getData()) 
+            foreach (KhachHang kh in QuanLyDAO<KhachHang>.getData())
             {
                 int rowIndex = khachHangGridView.Rows.Add();
 
@@ -54,7 +56,7 @@ namespace DoAn_QuanLyKhachSan
         {
             List<string> list = QuanLyDAO<KhachHang>.getTableColumNames();
 
-            foreach (var item in list) 
+            foreach (var item in list)
             {
                 thuocTinhCB.Items.Add(item);
             }
@@ -95,7 +97,7 @@ namespace DoAn_QuanLyKhachSan
             if (isDelete == DialogResult.No) return;
 
             UIQuanLy.Alert("Xoá thành công!!!", AlertForm.enmType.Error);
-            
+
             KhachHang selectedItem = khachHangGridView.SelectedRows[0].Tag as KhachHang;
             new KhachHangDAO().removeData(selectedItem);
             //QuanLyDAO<KhachHang>.remove(selectedItem, "CMND");
@@ -107,7 +109,7 @@ namespace DoAn_QuanLyKhachSan
         private void searchBtn_Click(object sender, EventArgs e)
         {
             var selectedItem = thuocTinhCB.SelectedItem;
-            
+
             List<KhachHang> resultList = QuanLyDAO<KhachHang>.searchData(selectedItem.ToString(), searchTxt.Text);
 
             khachHangGridView.Rows.Clear();

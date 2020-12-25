@@ -14,16 +14,17 @@ namespace DoAn_QuanLyKhachSan.UI
 {
     public partial class UIPhong : UserControl
     {
-        public UIPhong()
+        public UIPhong(object val)
         {
             InitializeComponent();
+
+            this.Tag = val;
 
             initListView();
             initCombobox();
 
-            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
-            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
-            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+            checkCV();
+
         }
 
         private void initListView()
@@ -43,6 +44,26 @@ namespace DoAn_QuanLyKhachSan.UI
 
                 row.Tag = phong;
             }
+        }
+
+        private void checkCV()
+        {
+            NhanVien nv = this.Tag as NhanVien;
+
+            if (nv.maCV != "CV01")
+            {
+                removeBtn.Enabled = false;
+                addBtn.Enabled = false;
+                editBtn.Enabled = false;
+
+                return;
+            }
+
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+
+            return;
         }
 
         private void initCombobox()
@@ -137,6 +158,8 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void phongGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!editBtn.Enabled) return;
+
             if (e.Button == MouseButtons.Right) return;
 
             Phong selectedItem = phongGridView.SelectedRows[0].Tag as Phong;

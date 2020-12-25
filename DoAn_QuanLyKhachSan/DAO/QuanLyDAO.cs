@@ -30,7 +30,7 @@ namespace DoAn_QuanLyKhachSan.DAO
 
                 foreach (PropertyInfo column in columns)
                 {
-                    if (!column.Name.EndsWith("s") && !Char.IsUpper(column.Name[0]) || column.Name.Contains("CMND") || column.Name.Contains("SDT"))
+                    if (!column.Name.EndsWith("s") && !Char.IsUpper(column.Name[0]) && !column.Name.Contains("tenDN") || column.Name.Contains("CMND") || column.Name.Contains("SDT"))
                     {
                         columnNames.Add(column.Name);
                     }
@@ -52,6 +52,26 @@ namespace DoAn_QuanLyKhachSan.DAO
             }
         }
 
+        public static int countDataRow(T t)
+        {
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                return db.GetTable<T>().Count();
+            }
+        }
+
+        public static T getData(T t, string columnName, string val)
+        {
+            using (DataClasses1DataContext db = new DataClasses1DataContext())
+            {
+                db.DeferredLoadingEnabled = false;
+                List<T> tList = db.GetTable<T>().ToList();
+                var result = tList.FirstOrDefault(item => typeof(T).GetProperty(columnName).GetValue(item).ToString().Contains(val));
+
+                return result;
+            }
+        }
+
         public static void addData(T t)
         {
             using (DataClasses1DataContext db = new DataClasses1DataContext())
@@ -66,29 +86,7 @@ namespace DoAn_QuanLyKhachSan.DAO
                 }
                 catch (SqlException sqlex)
                 {
-                    if (sqlex.Message.Contains("Phòng"))
-                    {
-                        MessageBox.Show("Phòng này đã có khách!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (sqlex.Message.Contains("PK__HoaDon__"))
-                    {
-                        MessageBox.Show("Hoá đơn này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (sqlex.Message.Contains("Hoadon_CMND"))
-                    {
-                        MessageBox.Show("Khách hàng không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    if (sqlex.Message.Contains("Hoadon_maNV"))
-                    {
-                        MessageBox.Show("Nhân viên không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    handleHoaDonSqlex(sqlex);
 
                     if (sqlex.Message.Contains("Ngay"))
                     {
@@ -114,6 +112,33 @@ namespace DoAn_QuanLyKhachSan.DAO
                         return;
                     }
                 }
+            }
+        }
+
+        private static void handleHoaDonSqlex(SqlException sqlex)
+        {
+            if (sqlex.Message.Contains("Phòng"))
+            {
+                MessageBox.Show("Phòng này đã có khách!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (sqlex.Message.Contains("PK__HoaDon__"))
+            {
+                MessageBox.Show("Hoá đơn này đã tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (sqlex.Message.Contains("Hoadon_CMND"))
+            {
+                MessageBox.Show("Khách hàng không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (sqlex.Message.Contains("Hoadon_maNV"))
+            {
+                MessageBox.Show("Nhân viên không tồn tại!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

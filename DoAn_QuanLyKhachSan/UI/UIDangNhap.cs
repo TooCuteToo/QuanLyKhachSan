@@ -57,16 +57,16 @@ namespace DoAn_QuanLyKhachSan
                     // Luu lai tai khoan da dang nhap khi tick Remember Me
                     if (ckRemember.Checked == true)
                     {
-                        ​String filepath = "..//..//..//user//remember.txt";
-                        ​FileStream fs = new FileStream(filepath, FileMode.Create);        
-                        ​StreamWriter sWriter = new StreamWriter(fs, Encoding.UTF8);
-                        ​sWriter.WriteLine(user);
-                        ​sWriter.WriteLine(pass);
-                        ​sWriter.Flush();
+                        String filepath = "..//..//..//user//remember.txt";
+                        FileStream fs = new FileStream(filepath, FileMode.Create);
+                        StreamWriter sWriter = new StreamWriter(fs, Encoding.UTF8);
+                        sWriter.WriteLine(user);
+                        sWriter.WriteLine(pass);
+                        sWriter.Flush();
                         fs.Close();
                     }
 
-                    this.ParentForm.Tag = nv.tenNV;
+                    this.ParentForm.Tag = nv;
                     this.Alert("XIN CHÀO " + nv.tenNV.ToUpper(), AlertForm.enmType.Success);
                     LoginExit(null, EventArgs.Empty);
                 }

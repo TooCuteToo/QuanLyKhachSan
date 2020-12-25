@@ -16,22 +16,22 @@ namespace DoAn_QuanLyKhachSan
 {
     public partial class UINhanVien : UserControl
     {
-        public UINhanVien()
+        public UINhanVien(object val)
         {
             InitializeComponent();
+
+            this.Tag = val;
 
             initListView();
             initCombobox();
 
-            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
-            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
-            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+            checkCV();
         }
 
         private void initListView()
         {
             nhanVienGridView.Rows.Clear();
-            
+
             foreach (NhanVien nv in QuanLyDAO<NhanVien>.getData())
             {
                 int rowIndex = nhanVienGridView.Rows.Add();
@@ -51,6 +51,26 @@ namespace DoAn_QuanLyKhachSan
                 row.Cells["sdt"].Value = nv.SDT;
                 row.Tag = nv;
             }
+        }
+
+        private void checkCV()
+        {
+            NhanVien nv = this.Tag as NhanVien;
+
+            if (nv.maCV != "CV01")
+            {
+                removeBtn.Enabled = false;
+                addBtn.Enabled = false;
+                editBtn.Enabled = false;
+
+                return;
+            }
+
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+
+            return;
         }
 
         private void initCombobox()
@@ -94,7 +114,7 @@ namespace DoAn_QuanLyKhachSan
             }
 
             NhanVien selectedItem = nhanVienGridView.SelectedRows[0].Tag as NhanVien;
-           
+
             EditForm edit = new EditForm();
             edit.showEdit(selectedItem);
             edit.FormClosed += new FormClosedEventHandler(form_close);
@@ -110,7 +130,7 @@ namespace DoAn_QuanLyKhachSan
             var selectedItem = thuocTinhCB.SelectedItem;
 
             nhanVienGridView.Rows.Clear();
-            
+
             List<NhanVien> resultList = QuanLyDAO<NhanVien>.searchData(selectedItem.ToString(), searchTxt.Text);
 
             foreach (NhanVien nv in resultList)
@@ -150,6 +170,8 @@ namespace DoAn_QuanLyKhachSan
 
         private void nhanVienGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!editBtn.Enabled) return;
+
             if (e.Button == MouseButtons.Right) return;
 
             NhanVien selectedItem = nhanVienGridView.SelectedRows[0].Tag as NhanVien;

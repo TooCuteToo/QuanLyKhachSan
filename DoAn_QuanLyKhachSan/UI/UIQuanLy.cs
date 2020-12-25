@@ -22,10 +22,15 @@ namespace DoAn_QuanLyKhachSan
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public UIQuanLy(string status)
+        public UIQuanLy(object val)
         {
+            NhanVien nv = val as NhanVien;
+            this.Tag = nv;
+
             InitializeComponent();
-            nameLB.Text = status.ToUpper();
+
+            nameLB.Text = nv.tenNV;
+            label3.Text = nv.maCV.ToUpper();
         }
 
         private void nhanVienBtn_Click(object sender, EventArgs e)

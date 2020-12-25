@@ -58,3 +58,25 @@ D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLy
 D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
 D:\Hoc tap\CN .NET\DoAn\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.ForgotPassForm.resources
 E:\Study\Net\DoAn_QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.ForgotPassForm.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe.config
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.exe
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.pdb
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.exe
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\DoAn_QuanLyKhachSan.pdb
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Design.dll
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.dll
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\bin\Debug\MetroFramework.Fonts.dll
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csprojResolveAssemblyReference.cache
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.AlertForm.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.EditForm.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.ForgotPassForm.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Main.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIDatPhong.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIKhachHang.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UINhanVien.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UI.UIPhong.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.WarningForm.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.Properties.Resources.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIDangNhap.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.UIQuanLy.resources
+E:\Study\Net\backup\QuanLyKhachSan\DoAn_QuanLyKhachSan\obj\Debug\DoAn_QuanLyKhachSan.csproj.GenerateResource.Cache

@@ -45,13 +45,13 @@ namespace DoAn_QuanLyKhachSan
 
         private void initUIQuanLy()
         {
-            UIQuanLy uiQuanLy = new UIQuanLy(this.Tag.ToString());
+            UIQuanLy uiQuanLy = new UIQuanLy(this.Tag);
             this.Controls.Add(uiQuanLy);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void uiDangNhap1_Load(object sender, EventArgs e)

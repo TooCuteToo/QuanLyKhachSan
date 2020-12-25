@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace DoAn_QuanLyKhachSan.UI
 {
@@ -29,36 +30,41 @@ namespace DoAn_QuanLyKhachSan.UI
         List<Guna2DateTimePicker> dateList;
         List<Guna2ComboBox> cbList;
 
-        private string[] gioiTinh;
-        private string[] queQuan;
+        private List<string> listGioiTinh;
+        private List<string> listQueQuan;
+
+        private List<string> listPhongTrong;
+        private List<string> listMaCV;
+
+        private List<string> listMaNV;
+        private List<string> listMaPhong;
+
+        private List<string> listPhong;
+        private List<string> listMaHD;
 
         public EditForm()
         {
             InitializeComponent();
-            gioiTinh = new string[] { "Nam", "Nữ" };
-            queQuan = new string[] { 
-                "Hồ Chí Minh", 
-                "Hà Nội", 
-                "Hải Phòng", 
-                "Phú Yên", 
-                "Vĩnh Phúc", 
-                "Bắc Ninh", 
-                "Hải Dương", 
-                "Tây Ninh", 
-                "Khánh Hoà", 
-                "Đà Nẵng", 
-                "Phú Yên", 
-                "Thanh Hoá",
-                "Hà Nam",
-                "Nghệ An",
-                "Hà Tĩnh",
-                "Kiên Giang",
-                "Cà Mau",
-                "Cần Thơ",
-                "Huế",
-                "Trà Vinh",
-            
-            };
+            getListCBValue();
+        }
+
+        private void getListCBValue()
+        {
+            listPhongTrong = QuanLyDAO<Phong>.getData().Where(item => item.tinhTrang.Contains("Trống")).Select(item => item.soPhong).ToList();
+
+            listQueQuan = QuanLyDAO<NhanVien>.getData().Select(item => item.diaChi).ToList();
+            listQueQuan.AddRange(QuanLyDAO<KhachHang>.getData().Select(item => item.diaChi).ToList());
+
+            listQueQuan = listQueQuan.Distinct().ToList();
+
+            listGioiTinh = QuanLyDAO<NhanVien>.getData().Select(item => item.gioiTinh).Distinct().ToList();
+            listMaCV = QuanLyDAO<ChucVu>.getData().Select(item => item.maCV).ToList();
+
+            listMaNV = QuanLyDAO<NhanVien>.getData().Select(item => item.maNV).ToList();
+            listMaPhong = QuanLyDAO<Phong>.getData().OrderBy(item => item.maLoai).Select(item => item.maLoai).Distinct().ToList();
+
+            listPhong = QuanLyDAO<Phong>.getData().Select(item => item.soPhong).ToList();
+            listMaHD = QuanLyDAO<HoaDon>.getData().Select(item => item.maHD).ToList();
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -75,7 +81,7 @@ namespace DoAn_QuanLyKhachSan.UI
             }
         }
 
-        public void getList()
+        public void getControlList()
         {
             list = formGroupBox.Controls.OfType<Guna2TextBox>().ToList();
             dateList = formGroupBox.Controls.OfType<Guna2DateTimePicker>().ToList();
@@ -84,79 +90,148 @@ namespace DoAn_QuanLyKhachSan.UI
 
         public void showAdd<T>(T t)
         {
-            initTextBox(t);
             editBtn.Enabled = false;
+            initTextBox(t);
 
+            getControlList();
             Show();
-            getList();
         }
 
         private void initTextBox<T>(T t)
         {
             if (t == null) return;
 
+            int i = 0;
             int y = 0;
+
             var keys = t.GetType().GetProperties();
 
             foreach (PropertyInfo property in keys)
             {
+
+                int x = i % 2 == 0 ? 193 + 150 + 20 + 20 : 20;
+                y += i % 2 != 0 ? 0 : 60;
+
+                i++;
+
                 Label label = new Label()
                 {
-                    Location = new System.Drawing.Point(20, y += 70),
+                    Location = new System.Drawing.Point(x, y),
                     Text = property.Name.ToUpper(),
+                    ForeColor = Color.Black,
+                    BackColor = Color.Transparent,
                 };
+
+
+                bool comboxCondition = (
+                    property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi") ||
+                    property.Name.Contains("maCV") || property.Name.Contains("maLoai")
+                );
+
+                bool textBoxCondition = (
+                    property.Name.Contains("pass") ||
+                    !property.Name.EndsWith("s") && !property.ToString().Contains("DoAn")
+                );
+
+                if (property.Name.Contains("tienThanhToan")) 
+                {
+                    continue;
+                }
 
                 if (property.Name.Contains("ngay"))
                 {
-                    createDatePicker(property, label, y, DateTime.Now);
+                    createDatePicker(property, label, x, y, DateTime.Now);
                     continue;
                 }
 
-                if (property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi"))
+                if (comboxCondition)
                 {
-                    createComboBox(property, label, y, 0);
+                    createComboBox(property, label, x, y, 0);
                     continue;
                 }
 
-                if (!property.Name.EndsWith("s") && !property.ToString().Contains("DoAn"))
+                if (textBoxCondition)
                 {
-                    createTextBox(property, label, y, "");
+                    createTextBox(property, label, x, y, "");
                 }
             }
 
             editBtn.Tag = t;
         }
 
-        private void createDatePicker(PropertyInfo property, Label label, int y, DateTime value)
+
+
+        private void createDatePicker(PropertyInfo property, Label label, int x, int y, DateTime value)
         {
             Guna2DateTimePicker datePicker = new Guna2DateTimePicker()
             {
                 Value = value,
-                Location = new System.Drawing.Point(150, y),
+                Location = new System.Drawing.Point(x += 120, y),
                 Tag = property,
                 CustomFormat = "dd/MM/yyyy",
                 Format = DateTimePickerFormat.Custom,
                 FillColor = Color.LightBlue,
+                ForeColor = Color.Black,
             };
 
             formGroupBox.Controls.Add(label);
             formGroupBox.Controls.Add(datePicker);
         }
 
-        private void createComboBox(PropertyInfo property, Label label, int y, int selectedIndex)
+        private void createComboBox(PropertyInfo property, Label label, int x, int y, int selectedIndex)
         {
             Guna2ComboBox combo = new Guna2ComboBox()
             {
-                Location = new System.Drawing.Point(150, y),
+                Location = new System.Drawing.Point(x += 120, y),
                 Tag = property,
             };
 
             if (property.Name.Contains("gioiTinh"))
             {
-                combo.Items.AddRange(gioiTinh);
+                combo.Items.AddRange(listGioiTinh.ToArray());
+            }
 
-            } else if (property.Name.Contains("diaChi")) {
-                combo.Items.AddRange(queQuan);
+            else if (property.Name.Contains("diaChi"))
+            {
+                combo.Items.AddRange(listQueQuan.ToArray());
+            }
+
+            else if (property.Name.Contains("soPhong"))
+            {
+                if (y == 60)
+                {
+                    combo.Items.AddRange(listPhong.ToArray());
+
+                    combo.SelectedIndexChanged += new EventHandler(setPhongEdit);
+                }
+                else
+                {
+                    combo.Items.AddRange(listPhongTrong.ToArray());
+                }
+            }
+
+            else if (property.Name.Contains("maNV"))
+            {
+                combo.Items.AddRange(listMaNV.ToArray());
+
+                combo.SelectedIndexChanged += new EventHandler(setNhanVienEdit);
+            }
+
+            else if (property.Name.Contains("maCV"))
+            {
+                combo.Items.AddRange(listMaCV.ToArray());
+            }
+
+            else if (property.Name.Contains("maLoai"))
+            {
+                combo.Items.AddRange(listMaPhong.ToArray());
+            }
+
+            else if (property.Name.Contains("maHD"))
+            {
+                combo.Items.AddRange(listMaHD.ToArray());
+
+                combo.SelectedIndexChanged += new EventHandler(setDatPhongEdit);
             }
 
             combo.SelectedIndex = selectedIndex;
@@ -165,18 +240,242 @@ namespace DoAn_QuanLyKhachSan.UI
             formGroupBox.Controls.Add(combo);
         }
 
-        private void createTextBox(PropertyInfo property, Label label, int y, string value)
+        private void setNhanVienEdit(object sender, EventArgs e)
         {
+            ComboBox cb = sender as ComboBox;
+            PropertyInfo property = cb.Tag as PropertyInfo;
+            var result = QuanLyDAO<NhanVien>.getData(new NhanVien(), property.Name, cb.SelectedItem.ToString());
+
+            getControlList();
+
+            foreach (Guna2TextBox txt in list)
+            {
+                PropertyInfo txtProperty = txt.Tag as PropertyInfo;
+
+                if (txtProperty.Name.Contains("tenNV"))
+                {
+                    txt.Text = result.tenNV;
+                }
+
+                else if (txtProperty.Name.Contains("SDT"))
+                {
+                    txt.Text = result.SDT;
+                }
+
+                else if (txtProperty.Name.Contains("tenDN"))
+                {
+                    txt.Text = result.tenDN;
+                }
+
+                else if (txtProperty.Name.Contains("pass"))
+                {
+                    txt.Text = result.pass;
+                }
+            }
+
+            foreach (Guna2ComboBox gunaCB in cbList)
+            {
+                PropertyInfo cbProperty = gunaCB.Tag as PropertyInfo;
+
+                if (cbProperty.Name.Contains("gioiTinh"))
+                {
+                    gunaCB.SelectedIndex = listGioiTinh.IndexOf(result.gioiTinh);
+                }
+
+                else if (cbProperty.Name.Contains("maCV"))
+                {
+                    gunaCB.SelectedIndex = listMaCV.IndexOf(result.maCV);
+                }
+
+                else if (cbProperty.Name.Contains("diaChi"))
+                {
+                    gunaCB.SelectedIndex = listQueQuan.IndexOf(result.diaChi);
+                }
+            }
+
+            foreach (Guna2DateTimePicker datePicker in dateList)
+            {
+                PropertyInfo dateProperty = datePicker.Tag as PropertyInfo;
+
+                if (dateProperty.Name.Contains("ngaySinh"))
+                {
+                    datePicker.Value = result.ngaySinh.Value;
+                }
+
+                else if (dateProperty.Name.Contains("ngayVaoLam"))
+                {
+                    datePicker.Value = result.ngayVaoLam.Value;
+                }
+            }
+        }
+
+        private void setDatPhongEdit(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            PropertyInfo property = cb.Tag as PropertyInfo;
+            var result = QuanLyDAO<HoaDon>.getData(new HoaDon(), property.Name, cb.SelectedItem.ToString());
+
+            getControlList();
+
+            foreach (Guna2TextBox txt in list)
+            {
+                PropertyInfo txtProperty = txt.Tag as PropertyInfo;
+
+                if (txtProperty.Name.Contains("CMND"))
+                {
+                    txt.Text = result.CMND;
+                }
+
+                else if (txtProperty.Name.Contains("tienThanhToan"))
+                {
+                    CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+                    txt.Text = result.tienThanhToan.Value.ToString("#,###", cul.NumberFormat);
+                }
+            }
+
+            foreach (Guna2ComboBox gunaCB in cbList)
+            {
+                PropertyInfo cbProperty = gunaCB.Tag as PropertyInfo;
+
+                if (cbProperty.Name.Contains("maHD"))
+                {
+                    gunaCB.SelectedIndex = listMaHD.IndexOf(result.maHD);
+                }
+
+                else if (cbProperty.Name.Contains("maNV"))
+                {
+                    gunaCB.SelectedIndex = listMaNV.IndexOf(result.maNV);
+                }
+
+                else if (cbProperty.Name.Contains("soPhong"))
+                {
+                    gunaCB.Items.RemoveAt(gunaCB.Items.Count - 1);
+                    gunaCB.Items.Add(result.soPhong);
+                    gunaCB.SelectedIndex = gunaCB.Items.Count - 1;
+                }
+            }
+
+            foreach (Guna2DateTimePicker datePicker in dateList)
+            {
+                PropertyInfo dateProperty = datePicker.Tag as PropertyInfo;
+
+                if (dateProperty.Name.Contains("ngayDat"))
+                {
+                    datePicker.Value = result.ngayDat.Value;
+                }
+
+                else if (dateProperty.Name.Contains("ngayTra"))
+                {
+                    datePicker.Value = result.ngayTra.Value;
+                }
+            }
+        }
+
+        private void setPhongEdit(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            PropertyInfo property = cb.Tag as PropertyInfo;
+            var result = QuanLyDAO<Phong>.getData(new Phong(), property.Name, cb.SelectedItem.ToString());
+
+            getControlList();
+
+            foreach (Guna2TextBox txt in list)
+            {
+                txt.Text = result.tinhTrang.ToString();
+            }
+
+            foreach (Guna2ComboBox gunaCB in cbList)
+            {
+                PropertyInfo cbProperty = gunaCB.Tag as PropertyInfo;
+
+                if (cbProperty.Name.Contains("soPhong"))
+                {
+                    gunaCB.SelectedIndex = listPhong.IndexOf(result.soPhong);
+                }
+
+                else if (cbProperty.Name.Contains("maLoai"))
+                {
+                    gunaCB.SelectedIndex = listMaPhong.IndexOf(result.maLoai);
+                }
+            }
+        }
+
+        private void createTextBox(PropertyInfo property, Label label, int x, int y, string value)
+        {
+            bool enabledCondition = (
+                (property.Name.Contains("tien") || property.Name.Contains("ma") &&
+                !property.Name.Contains("maCV") || 
+                property.Name.Contains("tenDN") || property.Name.Contains("pass")) &&
+                addBtn.Enabled
+            );
+
             Guna2TextBox textBox = new Guna2TextBox()
             {
                 Text = value,
-                Location = new System.Drawing.Point(150, y),
+                Location = new System.Drawing.Point(x + 120, y),
                 Tag = property,
                 //Size = new Size(200, 120),
-                Enabled = property.Name.Contains("tien") || property.Name.Contains("ma") && value != "" ? false : true,
+                Enabled = enabledCondition ? false : true,
             };
 
-            if (property.Name.Contains("CMND") || property.Name.Contains("SDT"))
+            if (property.Name.Contains("maNV"))
+            {
+                int count = QuanLyDAO<NhanVien>.countDataRow(new NhanVien()) + 1;
+                string str = count.ToString().PadLeft(3, '0');
+                textBox.Text = property.Name.Substring(2) + str;
+            }
+
+            else if (property.Name.Contains("tenDN"))
+            {
+                if (editBtn.Enabled)
+                {
+                    textBox.Text = value;
+                }
+                else
+                {
+                    int count = QuanLyDAO<NhanVien>.countDataRow(new NhanVien()) + 1;
+                    string str = count.ToString().PadLeft(2, '0');
+                    textBox.Text = "NV" + str;
+                }
+            } 
+
+            else if (property.Name.Contains("tienThanhToan")) 
+            {
+                if (editBtn.Enabled)
+                {
+                    CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+                    textBox.Text = decimal.Parse(value).ToString("#,###", cul.NumberFormat);
+                    textBox.Enabled = false;
+                }
+            }
+
+            else if (property.Name.Contains("tinhTrang"))
+            {
+                if (editBtn.Enabled)
+                {
+                    textBox.Text = value;
+                    textBox.Enabled = false;
+                }
+                else
+                {
+                    textBox.Text = "Trống";
+                    textBox.Enabled = false;
+                }
+            }
+
+            else if (property.Name.Contains("pass"))
+            {
+                textBox.Text = "123";
+            }
+
+            else if (property.Name.Contains("maHD"))
+            {
+                int count = QuanLyDAO<HoaDon>.countDataRow(new HoaDon()) + 1;
+                string str = count.ToString().PadLeft(2, '0');
+                textBox.Text = property.Name.Substring(2) + str;
+            }
+
+            else if (property.Name.Contains("CMND") || property.Name.Contains("SDT"))
             {
                 textBox.TextChanged += new EventHandler(checkTextBox);
             }
@@ -201,6 +500,7 @@ namespace DoAn_QuanLyKhachSan.UI
                     errorProvider.SetError(txt, null);
                 }
             }
+
             else if (property.Name.Contains("SDT"))
             {
                 if (!Regex.IsMatch(txt.Text, @"0\d{9,10}") || txt.Text.Length > 11)
@@ -216,28 +516,48 @@ namespace DoAn_QuanLyKhachSan.UI
 
         public void showEdit<T>(T t)
         {
-            initTextBoxValue(t);
             addBtn.Enabled = false;
+            initTextBoxValue(t);
 
             Show();
-            getList();
+            getControlList();
         }
 
         private void initTextBoxValue<T>(T t)
         {
-            int y = 0;
-
             if (t == null) return;
+
+            int y = 0;
+            int i = 0;
 
             var keys = t.GetType().GetProperties();
 
             foreach (PropertyInfo property in keys)
             {
+                int x = i % 2 == 0 ? 193 + 150 + 20 + 20 : 20;
+                y += i % 2 != 0 ? 0 : 60;
+
+                i++;
+
                 Label label = new Label()
                 {
-                    Location = new System.Drawing.Point(20, y += 70),
+                    Location = new System.Drawing.Point(x, y),
                     Text = property.Name.ToUpper(),
+                    ForeColor = Color.Black,
+                    BackColor = Color.Transparent,
                 };
+
+                bool comboBoxCondition = (
+                    property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi") ||
+                    property.Name.Contains("soPhong") || property.Name.Contains("maCV") ||
+                    (property.Name.Contains("maNV") && editBtn.Enabled) || property.Name.Contains("maLoai") ||
+                    property.Name.Contains("maHD") 
+                );
+
+                bool textBoxCondition = (
+                    property.Name.Contains("pass") ||
+                    !property.Name.EndsWith("s") && !property.ToString().Contains("DoAn")
+                );
 
                 var value = property.GetValue(t);
 
@@ -245,29 +565,63 @@ namespace DoAn_QuanLyKhachSan.UI
                 {
                     if (property.Name.Contains("ngay"))
                     {
-                        createDatePicker(property, label, y, DateTime.Parse(value.ToString()));
+                        createDatePicker(property, label, x, y, DateTime.Parse(value.ToString()));
                         continue;
                     }
 
-                    if (property.Name.Contains("gioiTinh") || property.Name.Contains("diaChi"))
+                    if (comboBoxCondition)
                     {
-                        int selectedIndex;
-                        
-                        if (gioiTinh.Contains(value.ToString())) {
-                            selectedIndex = Array.IndexOf(gioiTinh, value.ToString());
+                        int selectedIndex = 0;
 
-                        } else {
-                            selectedIndex = Array.IndexOf(queQuan, value.ToString());
+                        if (listGioiTinh.Contains(value.ToString()))
+                        {
+                            selectedIndex = listGioiTinh.IndexOf(value.ToString());
                         }
 
-                        createComboBox(property, label, y, selectedIndex);
+                        else if (listQueQuan.Contains(value.ToString()))
+                        {
+                            selectedIndex = listQueQuan.IndexOf(value.ToString());
+                        }
+
+                        else if (listMaNV.Contains(value.ToString()))
+                        {
+                            selectedIndex = listMaNV.IndexOf(value.ToString());
+                        }
+
+                        else if (listMaCV.Contains(value.ToString()))
+                        {
+                            selectedIndex = listMaCV.IndexOf(value.ToString());
+                        }
+
+                        else if (listMaPhong.Contains(value.ToString()))
+                        {
+                            selectedIndex = listMaPhong.IndexOf(value.ToString());
+                        }
+
+                        else if (listMaHD.Contains(value.ToString()))
+                        {
+                            selectedIndex = listMaHD.IndexOf(value.ToString());
+                        }
+
+                        else if (listPhong.Contains(value.ToString()) && keys.Count() == 5)
+                        {
+                            selectedIndex = listPhong.IndexOf(value.ToString());
+                        }
+
+                        else
+                        {
+                            listPhongTrong.Add(value.ToString());
+                            selectedIndex = listPhongTrong.IndexOf(value.ToString());
+                        }
+
+                        createComboBox(property, label, x, y, selectedIndex);
 
                         continue;
                     }
 
-                    if (!property.Name.EndsWith("s") && !property.ToString().Contains("DoAn"))
+                    if (textBoxCondition)
                     {
-                        createTextBox(property, label, y, value.ToString());
+                        createTextBox(property, label, x, y, value.ToString());
                     }
                 }
             }
@@ -323,7 +677,7 @@ namespace DoAn_QuanLyKhachSan.UI
         //    new KhachHangDAO().updateData(kh);
         //}
 
-        
+
 
         //private void updateNhanVien(List<TextBox> list, List<DateTimePicker> dateList)
         //{
@@ -384,7 +738,7 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            DialogResult isEdit = MessageBox.Show("Bạn có chắc chắn là muốn thay đổi dòng hiện tại!!!", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult isEdit = MessageBox.Show("Bạn có muốn thêm dòng dữ liệu này ?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (isEdit == DialogResult.No) return;
 

@@ -43,10 +43,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien();
-            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang();
-            this.uiPhong = new DoAn_QuanLyKhachSan.UI.UIPhong();
-            this.uiDatPhong = new DoAn_QuanLyKhachSan.UI.UIDatPhong();
+            this.uiNhanVien = new DoAn_QuanLyKhachSan.UINhanVien(this.Tag);
+            this.uiKhachHang = new DoAn_QuanLyKhachSan.UIKhachHang(this.Tag);
+            this.uiPhong = new DoAn_QuanLyKhachSan.UI.UIPhong(this.Tag);
+            this.uiDatPhong = new DoAn_QuanLyKhachSan.UI.UIDatPhong(this.Tag);
             this.label1 = new System.Windows.Forms.Label();
             this.thoatBtn = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -108,6 +108,7 @@
             this.nameLB.Size = new System.Drawing.Size(136, 21);
             this.nameLB.TabIndex = 1;
             this.nameLB.Text = "NGUYEN VAN A";
+            this.nameLB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel6
             // 

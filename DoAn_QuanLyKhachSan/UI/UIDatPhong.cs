@@ -9,21 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DoAn_QuanLyKhachSan.POJO;
 using DoAn_QuanLyKhachSan.DAO;
+using System.Globalization;
 
 namespace DoAn_QuanLyKhachSan.UI
 {
     public partial class UIDatPhong : UserControl
     {
-        public UIDatPhong()
+        public UIDatPhong(object val)
         {
             InitializeComponent();
 
             initListView();
             initCombobox();
 
-            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
-            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
-            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+            this.Tag = val;
+
+            checkCV();
         }
 
         private void initListView()
@@ -46,10 +47,31 @@ namespace DoAn_QuanLyKhachSan.UI
                 row.Cells["ngayDat"].Value = datPhong.ngayDat.Value.ToString("dd/MM/yyyy");
                 row.Cells["ngayTra"].Value = datPhong.ngayTra.Value.ToString("dd/MM/yyyy");
 
-                row.Cells["tienThanhToan"].Value = datPhong.tienThanhToan.ToString();
+                CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+                row.Cells["tienThanhToan"].Value = datPhong.tienThanhToan.Value.ToString("#,###", cul.NumberFormat);
 
                 row.Tag = datPhong;
             }
+        }
+
+        private void checkCV()
+        {
+            NhanVien nv = this.Tag as NhanVien;
+
+            if (nv.maCV != "CV01")
+            {
+                removeBtn.Enabled = false;
+                rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+                rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+
+                return;
+            }
+
+            rightClickContextMenu.Items.Add("ADD", null, new EventHandler(addBtn_Click));
+            rightClickContextMenu.Items.Add("EDIT", null, new EventHandler(editBtn_Click));
+            rightClickContextMenu.Items.Add("DELETE", null, new EventHandler(removeBtn_Click));
+
+            return;
         }
 
         private void initCombobox()
@@ -71,7 +93,7 @@ namespace DoAn_QuanLyKhachSan.UI
                 MessageBox.Show("Vui lòng chọn dòng cần chỉnh sửa!!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
- 
+
             HoaDon selectedItem = datPhongGridView.SelectedRows[0].Tag as HoaDon;
 
             EditForm edit = new EditForm();
@@ -150,6 +172,8 @@ namespace DoAn_QuanLyKhachSan.UI
 
         private void datPhongGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (!editBtn.Enabled) return;
+
             if (e.Button == MouseButtons.Right) return;
 
             HoaDon selectedItem = datPhongGridView.SelectedRows[0].Tag as HoaDon;
