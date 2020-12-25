@@ -159,8 +159,6 @@ namespace DoAn_QuanLyKhachSan.UI
             editBtn.Tag = t;
         }
 
-
-
         private void createDatePicker(PropertyInfo property, Label label, int x, int y, DateTime value)
         {
             Guna2DateTimePicker datePicker = new Guna2DateTimePicker()
@@ -477,17 +475,23 @@ namespace DoAn_QuanLyKhachSan.UI
 
             else if (property.Name.Contains("CMND") || property.Name.Contains("SDT"))
             {
-                textBox.TextChanged += new EventHandler(checkTextBox);
+                textBox.KeyPress += new KeyPressEventHandler(checkTextBox);
             }
 
             formGroupBox.Controls.Add(label);
             formGroupBox.Controls.Add(textBox);
         }
 
-        private void checkTextBox(object sender, EventArgs e)
+
+        private void checkTextBox(object sender, KeyPressEventArgs e)
         {
             Guna2TextBox txt = sender as Guna2TextBox;
             PropertyInfo property = txt.Tag as PropertyInfo;
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
 
             if (property.Name.Contains("CMND"))
             {
@@ -503,7 +507,7 @@ namespace DoAn_QuanLyKhachSan.UI
 
             else if (property.Name.Contains("SDT"))
             {
-                if (!Regex.IsMatch(txt.Text, @"0\d{9,10}") || txt.Text.Length > 11)
+                if (txt.Text.Length > 11)
                 {
                     errorProvider.SetError(txt, "Số điện thoại không hợp lệ!!!");
                 }
